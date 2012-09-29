@@ -49,7 +49,7 @@ $(function(){
         item_masonry();	
         $('.encode_url',context).each(function(){
             var url=$(this).attr('url')||"";
-            var tag=$(this).attr('tagName').toLowerCase();
+            var tag=$(this).prop('tagName').toLowerCase();
             if(tag=='img'){ 
                 $(this).attr('src',base64_decode(url));
             }else if(tag=='a'){ 
@@ -80,11 +80,7 @@ $(function(){
                 }
             },'json'); 
         });
-        $('.item').mouseover(function(){ 
-            $('.btns',this).show();
-        }).mouseout(function(){
-            $('.btns',this).hide();		 	
-        });
+      
 		
         jq_corner(context);
     }
@@ -118,7 +114,8 @@ $(function(){
         $('.infinite_scroll').masonry('appended', $newElems, false);
         $newElems.fadeIn();
         item_callback($newElems);		
-    });		   
+    });	
+	imgBox();	
 });
 
 //添加评论
@@ -403,6 +400,23 @@ $(function(){
     });	
 });
 
+//图片框
+function imgBox() {
+	$('.fancybox').fancybox({
+			padding: 10,
+			openEffect : 'elastic',
+			openSpeed  : 300,
+			closeEffect : 'elastic',
+			closeSpeed  : 150,
+			closeClick : true,
+			helpers : {
+				overlay : {
+					css : {'background' : 'rgba(238,238,238,0.85)'}
+				},
+			}
+	});
+}
+
 //提示框
 var hMessagebox;
 function messagebox(s,cls){ 
@@ -501,6 +515,7 @@ function registerBox() {
 	        return false;	
 	    }
     );
+	validatorReg();
 }
 
 //从注册框跳往登录框
@@ -508,6 +523,15 @@ function toRegister() {
 	var dialog = art.dialog.get('login');
 	dialog.close();
 	registerBox();
+}
+
+//validator注册验证
+function validatorReg(){
+	$.formValidator.initConfig({formid:"myform",autotip:true});
+	$("#name").formValidator({onshow:"用户帐号不能为空",onfocus:"用户帐号不能为空"}).inputValidator({min:1,onerror:"用户帐号不能为空"});
+	$("#email").formValidator({empty:true,onshow:"请填写邮箱",onfocus:"请填写邮箱"}).inputValidator({min:1,onerror:"请填写邮箱"}).regexValidator({regexp:"email",datatype:"enum",onerror:"邮件格式错误"}).ajaxValidator();
+	$("#passwd").formValidator({onshow:"填写密码",onfocus:"填写6位以上密码"}).inputValidator({min:6,onerror:"请填写6位以上密码"});
+	$("#confirm_passwd").formValidator({onshow:"确认密码",onfocus:"确认密码",oncorrect:"填写正确"}).compareValidator({desid:"passwd",operateor:"=",onerror:"两次输入密码不一致"});
 }
 
 //搜索

@@ -2,7 +2,7 @@
     <div class="item mt15 masonry_brick jq_corner" data-corner="7px" iid="{$val['id']}">
         <div class="item_t">
             <div class="img tc"> 
-            	<a target="_blank" href="{:u('item/index',array('id'=>$val['id']))}" hidefocus="true" rel="nofollow">
+            	<a href="http://www.mailuo.com{$val['bimg']}" rel="nofollow" class="fancybox" title="{$val.title}">
                 	<img alt="{$val.title}" url="{:base64_encode($val['img'])}" style="display:inline;" class="encode_url">
             	</a>
                 <span class="price">￥{$val.price}</span> 
@@ -13,7 +13,7 @@
                 </div>
          	</div>
             <div class="title">
-                <span>{$val.title}</span>
+                <a target="_blank" href="{:u('item/index',array('id'=>$val['id']))}" hidefocus="true" rel="nofollow"><span>{$val.title}</span></a>
             </div>
         </div>
         <div class="item_b clearfix">
