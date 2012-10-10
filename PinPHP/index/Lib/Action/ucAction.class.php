@@ -818,7 +818,7 @@ class ucAction extends baseAction {
     }
 
     function register() {
-        if ($this->check_login()) {
+	   if ($this->check_login()) {
             header('location:' . u('index/index'));
         }
         if (isset($_POST['dosubmit'])) {
@@ -851,6 +851,21 @@ class ucAction extends baseAction {
         $this->display();
     }
 
+	function ajaxRegister() {
+		if($_POST['name']){
+			$user = $this->user_mod->where("name='" . trim($_POST['name']) . "' and status='1'")->find();
+		}elseif($_POST['email']) {
+			$user = $this->user_mod->where("email='" . trim($_POST['email']) ."' and status='1'")->find();
+		}elseif($_POST['tel']) {
+			$user = $this->user_mod->where("phone='" . trim($_POST['tel']) . "' and status='1'")->find();
+		}
+		if(!$user){
+			echo 1;
+		}else{
+			echo -1;
+		}
+	}
+	
     function logout() {
         if ($_SESSION['login_type'] == 'sina') {
             $url = "https://api.weibo.com/2/account/end_session.json?access_token=" . $_SESSION['access_token'] . "&source" . $this->setting['sina_app_key'];

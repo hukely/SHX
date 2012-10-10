@@ -1,4 +1,4 @@
-<load href="__TMPL__public/css/uc_v1.css" />   
+<load href="__TMPL__public/css/uc_v1.css" /> 
 <script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/plugins/formvalidatorregex.js"></script>
 <div class="register account" id= "register_dialog">
 	<div id="reg_left">
@@ -8,8 +8,8 @@
 			<table style="margin:20px 0px 0px 0px;">
                         <tr>
                             <th  style="width:85px"><em class="red">*&nbsp;</em>登录帐号：</th>
-                            <td><input type="text" class="input_text" id="name" name="name" value="{$data.name}"/></td>
-							<td><div id="nameTip"></div></td>
+                            <td width="160"><input type="text" class="input_text" id="name" name="name" value="{$data.name}"/></td>
+							<td width="240px"><div id="nameTip"></div></td>
                         </tr>
                         <tr>
                             <th><em class="red">*&nbsp;</em>登录密码：</th>
@@ -34,7 +34,7 @@
                         <tr>
                             <th><em class="red">*&nbsp;</em>验证码：</th>
                             <td>
-                            	<input type="text" name="verify" id="verify" class="input_text left" style="width:100px;"/>
+                            	<input type="text" name="verify" id="verify" class="input_text left" style="width:90px;"/>
                             	<img src="{:u('public/verify')}" url="{:u('public/verify')}" class="verify_img" class="left" 
                                 onclick="changeVerify(this)"
                                 style="margin:5px 0px 0px 10px;"/>

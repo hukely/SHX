@@ -121,7 +121,6 @@
 	padding-bottom:15px;
 }
 .account td{ 
-	padding-left:10px;
 	padding-bottom:15px;	
 }
 
@@ -212,7 +211,7 @@
 }
 .uc .register #reg_left{ 
 	float:left;
-	width:600px;
+	width:590px;
 	border-right: 1px solid #E5E5E5;
 }
 .uc .register #reg_right{ 

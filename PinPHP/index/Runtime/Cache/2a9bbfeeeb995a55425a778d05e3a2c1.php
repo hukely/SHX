@@ -135,7 +135,7 @@ $(function(){
                         <tr>
                             <th></th>
                             <td>
-                                <input name="dosubmit" type="submit" value=" " class="reg_btn"/>
+                                <input id="submit" name="dosubmit" type="submit" value=" " class="reg_btn"/>
                             </td>
                         </tr>
                     </table>
