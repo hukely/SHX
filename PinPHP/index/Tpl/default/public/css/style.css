@@ -503,6 +503,7 @@ span.tag_title {
 .item_list {
 	padding: 0 0 50px;
 	position:relative;
+	margin: 0 auto;
 }
 .box_shadow {
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -597,7 +598,7 @@ span.tag_title {
 	margin: 0 auto;
 	position: relative;
 	width: 210px;
-	min-height:210px;
+	min-height:100px;
 }
 .item_t .price {
 	position:absolute;

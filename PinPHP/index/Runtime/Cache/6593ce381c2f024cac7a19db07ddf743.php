@@ -1,19 +1,19 @@
-<load href="__TMPL__public/css/uc_v1.css" />   
+<?php if (!defined('THINK_PATH')) exit();?><link rel="stylesheet" type="text/css" href="__TMPL__public/css/uc_v1.css" />   
 <script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/plugins/formvalidatorregex.js"></script>
 <div class="register account" id= "register_dialog">
 	<div id="reg_left">
 		<h2>新会员注册</h2>
-		<div class="hint">加入{$site_name}，发现时尚，分享购物乐趣。</div>
+		<div class="hint">加入<?php echo ($site_name); ?>，发现时尚，分享购物乐趣。</div>
 		<form action="" method="post" id="myform">          
 			<table style="margin:20px 0px 0px 0px;">
                         <tr>
                             <th  style="width:85px"><em class="red">*&nbsp;</em>登录帐号：</th>
-                            <td><input type="text" class="input_text" id="name" name="name" value="{$data.name}"/></td>
+                            <td><input type="text" class="input_text" id="name" name="name" value="<?php echo ($data["name"]); ?>"/></td>
 							<td><div id="nameTip"></div></td>
                         </tr>
                         <tr>
                             <th><em class="red">*&nbsp;</em>登录密码：</th>
-                            <td><input type="password" class="input_text" name="passwd" id="passwd" value="{$data.passwd}"/></td>
+                            <td><input type="password" class="input_text" name="passwd" id="passwd" value="<?php echo ($data["passwd"]); ?>"/></td>
 							<td><div id="passwdTip"></div></td>
                         </tr>
                         <tr>
@@ -23,7 +23,7 @@
                         </tr>
 						<tr>
                             <th><em class="red">*&nbsp;</em>电子邮箱：</th>
-                            <td><input type="text" class="input_text" id="email" name="email" value="{$data.email}"/></td>
+                            <td><input type="text" class="input_text" id="email" name="email" value="<?php echo ($data["email"]); ?>"/></td>
 							<td><div id="emailTip"></div></td>
                         </tr>
 						<tr>
@@ -35,7 +35,7 @@
                             <th><em class="red">*&nbsp;</em>验证码：</th>
                             <td>
                             	<input type="text" name="verify" id="verify" class="input_text left" style="width:100px;"/>
-                            	<img src="{:u('public/verify')}" url="{:u('public/verify')}" class="verify_img" class="left" 
+                            	<img src="<?php echo u('public/verify');?>" url="<?php echo u('public/verify');?>" class="verify_img" class="left" 
                                 onclick="changeVerify(this)"
                                 style="margin:5px 0px 0px 10px;"/>
                             </td>
@@ -55,8 +55,8 @@
 		
 		<p>您也可以用以下方式登录</p>
 		<div class="login_list clearfix">
-			<a href="{:u('uc/sina_login')}" class="sina" target="_blank"></a>
-			<a href="{:u('uc/qq_login')}" class="qq" target="_blank"></a>
+			<a href="<?php echo u('uc/sina_login');?>" class="sina" target="_blank"></a>
+			<a href="<?php echo u('uc/qq_login');?>" class="qq" target="_blank"></a>
 		</div>                
 	</div>
 </div>
