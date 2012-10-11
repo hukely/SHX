@@ -492,7 +492,9 @@ function registerBox() {
 					$('.d-content').css('height', '450');
 				}
 	        });
-			validatorReg();
+			jQuery.getScript(def.root+'statics/js/jquery/plugins/formValidatorRegex.js', function() {
+				validatorReg();
+			});
 	        var context=$('#register_dialog');
 	        $('.login_list a').click(function(){ 
 	            $.cookie('redirect',window.location.href,{
@@ -502,13 +504,16 @@ function registerBox() {
 	        $('input[name="dosubmit"]', context).click(function(){ 
 	            var name=$.trim($('#name',context).val());
 	            var passwd=$.trim($('#passwd',context).val());
+	            var email=$.trim($('#email',context).val());
+	            var phone=$.trim($('#phone',context).val());
+	            var verify=$.trim($('#verify',context).val());
 	            $.post(
-		            def.root+'index.php?m=uc&a=register',
-		            {name:name, passwd:passwd, dosubmit:'dosubmit'},
-		            function(data){alert(data);
+					def.root+'index.php?m=uc&a=ajaxRegister',
+	            	{name:name, passwd:passwd, email:email, phone:phone, verify:verify},
+		            function(data){ 
 		                data=data.data;
 		                if(data.err=="0"){ 
-		                    $('.err',context).html(data.msg);
+		                    $('.hint',context).html(data.msg);
 		                    return;
 		                }
 		                window.location.href="";
@@ -538,15 +543,17 @@ function validatorReg(){
 		submitAfterAjaxPrompt : '正在向服务器验证，请稍等...'
 	});
 	$('#name').formValidator({onShowText:"请输入用户名",onShow:"请推填写登录用户名",onFocus:"6~12个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾",onCorrect:"该用户名可以注册"}).inputValidator({min:6,max:12,onError:"你输入的用户长度不正确,请确认"}).regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
-	.ajaxValidator({
+	    .ajaxValidator({
 		dataType : "html",
 		type : "POST",
 		async : true,
 		url : def.root+"uc/ajaxRegister",
 		success : function(data){
-            if( data == 1) return true;
-            if( data == -1) return false;
-			return false;
+            if( data == 1) {
+				return true;
+			}else{
+				return false;
+			}
 		},
 		buttons: $("#button"),
 		error: function(jqXHR, textStatus, errorThrown){alert("服务器没有返回数据，可能服务器忙，请重试"+errorThrown);},
@@ -561,28 +568,32 @@ function validatorReg(){
 		async : true,
 		url : def.root+"uc/ajaxRegister",
 		success : function(data){
-            if( data == 1) return true;
-            if( data == -1) return false;
-			return false;
+            if( data == 1) {
+				return true;
+			}else{
+				return false;
+			}
 		},
 		buttons: $("#button"),
 		error: function(jqXHR, textStatus, errorThrown){alert("服务器没有返回数据，可能服务器忙，请重试"+errorThrown);},
-		onError : "该email已被注册，请换个邮箱试试",
+		onError : "该邮箱已被注册，请更换",
 		onWait : "正在进行合法性校验，请稍候..."
 	});
-	$("#tel").formValidator({onShow:"请输入手机号码",onFocus:"手机的长度必须是11位",onCorrect:"手机格式正确"}).inputValidator({min:11,max:11,onError:"手机号码必须为11位,请确认"}).regexValidator({regExp:"mobile",dataType:"enum",onError:"手机的格式不正确"}).ajaxValidator({
+	$("#phone").formValidator({onShow:"请输入手机号码",onFocus:"手机的长度必须是11位",onCorrect:"手机格式正确"}).inputValidator({min:11,max:11,onError:"手机号码必须为11位,请确认"}).regexValidator({regExp:"mobile",dataType:"enum",onError:"手机的格式不正确"}).ajaxValidator({
 		dataType : "html",
 		type : "POST",
 		async : true,
 		url : def.root+"uc/ajaxRegister",
 		success : function(data){
-            if( data == 1) return true;
-            if( data == -1) return false;
-			return false;
+            if( data == 1) {
+				return true;
+			}else{
+				return false;
+			}
 		},
 		buttons: $("#button"),
 		error: function(jqXHR, textStatus, errorThrown){alert("服务器没有返回数据，可能服务器忙，请重试"+errorThrown);},
-		onError : "该电话号码已被注册，请更换号码再试",
+		onError : "该手机号码已被注册，请更换",
 		onWait : "正在进行合法性校验，请稍候..."
 	});
 }

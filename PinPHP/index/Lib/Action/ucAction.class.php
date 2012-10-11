@@ -821,7 +821,7 @@ class ucAction extends baseAction {
 	   if ($this->check_login()) {
             header('location:' . u('index/index'));
         }
-        if (isset($_POST['dosubmit'])) {
+        if (isset($_POST['verify'])) {
             $data = $this->user_mod->create();
             $this->assign('data', $data);
             $flag = true;
@@ -832,6 +832,12 @@ class ucAction extends baseAction {
             if (strlen(trim($data['email'])) > 0) {
                 if ($this->user_mod->where("email='" . trim($data['email']) . "'")->count()) {
                     $this->assign('err', array('err' => 0, 'msg' => '邮箱已经存在!'));
+                    $flag = false;
+                }
+            }
+			if (strlen(trim($data['phone'])) > 0) {
+                if ($this->user_mod->where("phone='" . trim($data['phone']) . "'")->count()) {
+                    $this->assign('err', array('err' => 0, 'msg' => '手机号码已被注册!'));
                     $flag = false;
                 }
             }
@@ -852,18 +858,65 @@ class ucAction extends baseAction {
     }
 
 	function ajaxRegister() {
-		if($_POST['name']){
-			$user = $this->user_mod->where("name='" . trim($_POST['name']) . "' and status='1'")->find();
-		}elseif($_POST['email']) {
-			$user = $this->user_mod->where("email='" . trim($_POST['email']) ."' and status='1'")->find();
-		}elseif($_POST['tel']) {
-			$user = $this->user_mod->where("phone='" . trim($_POST['tel']) . "' and status='1'")->find();
+		if (isset($_POST['clientid'])) {
+			if($_POST['clientid'] == 'name'){
+				$user = $this->user_mod->where("name='" . trim($_POST['name']) . "' and status='1'")->find();
+			}elseif($_POST['clientid'] == 'email') {
+				$user = $this->user_mod->where("email='" . trim($_POST['email']) ."' and status='1'")->find();
+			}elseif($_POST['clientid'] == 'phone') {
+				$user = $this->user_mod->where("phone='" . trim($_POST['phone']) . "' and status='1'")->find();
+			}
+			if(!$user){
+				echo 1;
+			}else{
+				echo -1;
+			}
+			die;
 		}
-		if(!$user){
-			echo 1;
+		$data = $this->user_mod->create();
+		if($_SESSION['verify'] != md5($_POST['verify'])) {
+			$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>验证码输入错误!</font>'));
+			die;
+		}
+		if(strlen(trim($data['name'])) > 5) {
+			if(trim($data['name']) == '请输入用户名') {
+				$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>请输入用户名!</font>'));
+				die;
+			}
+			if($this->user_mod->where("name='" . trim($data['name']) . "'")->count()) {
+				$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>用户名已注册!</font>'));
+				die;
+			}
 		}else{
-			echo -1;
+			$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>用户名格式错误!</font>'));
+				die;
 		}
+		if(strlen(trim($data['email'])) > 5) {
+			if ($this->user_mod->where("email='" . trim($data['email']) . "'")->count()) {
+				$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>邮箱已注册!</font>'));
+				die;
+			}
+		}else{
+			$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>邮箱格式错误!</font>'));
+				die;
+		}
+		if(strlen(trim($data['phone'])) > 10) {
+			if ($this->user_mod->where("phone='" . trim($data['phone']) . "'")->count()) {
+				$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>手机已注册!</font>'));
+				die;				
+			}
+		}else{
+			$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>手机格式错误!</font>'));
+				die;	
+		}
+		
+		$data['ip'] = $_SERVER['REMOTE_ADDR'];
+		$data['add_time'] = time();
+		$data['passwd'] = md5(trim($data['passwd']));
+		$id = $this->user_mod->add($data);
+		$_SESSION['user_id'] = $id; 
+		$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>恭喜,注册成功!</font>'));
+		die;	
 	}
 	
     function logout() {

@@ -95,7 +95,7 @@ $(function(){
          	<div id="reg_left">
             	<h2>新会员注册</h2>
                 <div class="hint">加入<?php echo ($site_name); ?>，发现时尚，分享购物乐趣。</div>
-                <form action="" method="post" id="myform">
+                <form action="__APP__/uc/register" method="post" id="myform">
                     <?php if(isset($err)): ?><div class="err" style="width:150px;">
                         <div class="icon_<?php echo ($err["err"]); ?>"><?php echo ($err["msg"]); ?></div>                
                     </div><?php endif; ?>                  
@@ -122,8 +122,8 @@ $(function(){
                         </tr>
 						<tr>
                             <th><em class="red">*&nbsp;</em>手机号码：</th>
-                            <td><input type="text" class="input_text" id="tel" name="tel" value=""/></td>
-							<td><div id="telTip"></div></td>
+                            <td><input type="text" class="input_text" id="phone" name="phone" value=""/></td>
+							<td><div id="phoneTip"></div></td>
                         </tr>					
                         <tr>
                             <th><em class="red">*&nbsp;</em>验证码：</th>
@@ -135,7 +135,9 @@ $(function(){
                         <tr>
                             <th></th>
                             <td>
-                                <input id="submit" name="dosubmit" type="submit" value=" " class="reg_btn"/>
+                                <input id="submit" name="dosubmit" type="submit" value="" class="reg_btn"/>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<p class="hint"></p>
                             </td>
                         </tr>
                     </table>

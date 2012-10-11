@@ -1,5 +1,4 @@
 <?php if (!defined('THINK_PATH')) exit();?><link rel="stylesheet" type="text/css" href="__TMPL__public/css/uc_v1.css" /> 
-<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/plugins/formvalidatorregex.js"></script>
 <div class="register account" id= "register_dialog">
 	<div id="reg_left">
 		<h2>新会员注册</h2>
@@ -28,8 +27,8 @@
                         </tr>
 						<tr>
                             <th><em class="red">*&nbsp;</em>手机号码：</th>
-                            <td><input type="text" class="input_text" id="tel" name="tel" value=""/></td>
-							<td><div id="telTip"></div></td>
+                            <td><input type="text" class="input_text" id="phone" name="phone" value=""/></td>
+							<td><div id="phoneTip"></div></td>
                         </tr>					
                         <tr>
                             <th><em class="red">*&nbsp;</em>验证码：</th>
