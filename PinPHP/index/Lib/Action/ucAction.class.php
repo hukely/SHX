@@ -810,7 +810,7 @@ class ucAction extends baseAction {
                 $_SESSION['user_id'] = $user['id'];
                 $res = $this->user_mod->where("id='" . $_SESSION['user_id'] . "'")->setField(array('last_ip' => $_SERVER['REMOTE_ADDR'], 'last_time' => time()));
                 header('Location:' . urldecode($_COOKIE['redirect']));
-            } else {
+            }else{
                 $this->assign('err', array('err' => 0, 'msg' => '帐号或密码错误!'));
             }
         }
@@ -915,7 +915,7 @@ class ucAction extends baseAction {
 		$data['passwd'] = md5(trim($data['passwd']));
 		$id = $this->user_mod->add($data);
 		$_SESSION['user_id'] = $id; 
-		$this->ajaxReturn(array('err' => 0, 'msg' => '<br><font color=red>恭喜,注册成功!</font>'));
+		$this->ajaxReturn(array('err' => 1, 'msg' => '<br><font color=red>恭喜,注册成功!</font>'));
 		die;	
 	}
 	

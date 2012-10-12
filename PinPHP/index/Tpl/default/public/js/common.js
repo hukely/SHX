@@ -501,6 +501,7 @@ function registerBox() {
 	                path:'/'
 	            });								  
 	        });
+			$('#myform').submit(function() { return false; });
 	        $('input[name="dosubmit"]', context).click(function(){ 
 	            var name=$.trim($('#name',context).val());
 	            var passwd=$.trim($('#passwd',context).val());
@@ -515,8 +516,13 @@ function registerBox() {
 		                if(data.err=="0"){ 
 		                    $('.hint',context).html(data.msg);
 		                    return;
-		                }
-		                window.location.href="";
+		                }else{
+							 $('.hint',context).html(data.msg);
+							setTimeout(function(){ 
+								dialog.close();
+							},1000);
+						}
+						 window.location.reload();
 		            },
 		            'json'
 	            );

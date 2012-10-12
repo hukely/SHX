@@ -16,10 +16,10 @@ var onMouseOutFixTextHtml = '<DIV class="txt-info-mouseout">$data$</DIV>';
 
 //初始状态，加其它几种状态
 var passwordStrengthStatusHtml = [
-'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog0"></B><EM class=st2>强</EM></P>',
-'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog1"></B><EM class=st2>强</EM></P>',
-'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog2"></B><EM class=st2>强</EM></P>',
-'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog3"></B><EM class=st2>强</EM></P>'
+'<P id=passStrong class="pswState">强度：<EM class=st1</EM><B class="progressImage prog0"></B><EM class=st2></EM></P>',
+'<P id=passStrong class="pswState">强度：<EM class=st1></EM><B class="progressImage prog1"></B><EM class=st2></EM></P>',
+'<P id=passStrong class="pswState">强度：<EM class=st1></EM><B class="progressImage prog2"></B><EM class=st2></EM></P>',
+'<P id=passStrong class="pswState">强度：<EM class=st1></EM><B class="progressImage prog3"></B><EM class=st2></EM></P>'
 							  ];
 
 var passwordStrengthText = ['密码强度：弱','密码强度：中','密码强度：强']
