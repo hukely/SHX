@@ -25,49 +25,405 @@
 	margin:0 auto;
 }
 .header {
+    height: 123px;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+    z-index: 999;
 }
-.header .mbox {
-	background: url("../images/bg_header.jpg") no-repeat scroll 0 0 transparent;
-	padding-top: 17px;
-	width: 950px;
-	margin:0 auto;
+.header .m-head {
+    background: url("../images/header-bg.png") repeat-x scroll 0 0 transparent;
+    height: 83px;
 }
-.header .mbox .logo {
-	float:left;
-	height: 62px;
+.header .g-logo {
+    float: left;
+    padding-top: 20px;
+}
+.header .g-logo a {
+    background: url("../images/logo-new-1x.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 45px;
+    overflow: hidden;
+    text-indent: -999px;
+    width: 222px;
 	position: relative;
-	width: 190px;
 }
-.header .mbox .homelogin {
+.header .g-logo a .goup {
+    cursor: pointer;
+    height: 10px;
+    left: 5px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -999px;
+    top: 5px;
+    width: 10px;
+    z-index: 9;
 }
-.header .mbox .homelogin .top_uc {
-	width:98px;
-	height:30px;
-	background:url(../images/uc.jpg) left no-repeat;
-	display:block;
+.header .g-slogan {
+    background: url("../images/bg-slogan.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 35px;
+    padding: 5px 2px 4px 0;
 }
-.header .mbox .homelogin li {
-	float:left;
-	display:block;
-	padding: 0 10px 0 10px;
-	height: 16px;
-	line-height:16px;
-	background: url(../images/line.gif) right center no-repeat;
+.header .g-slogan a {
+    text-decoration: none;
 }
-.header .mbox .homelogin li .m_sina {
-	display:block;
-	background:url(../images/sns2.png) 0px 0px no-repeat;
-	padding-left:18px;
+.header .g-slogan a.gz-btn {
+    background-image: url("../images/slogan-gz.png");
+    background-repeat: no-repeat;
+    float: right;
+    height: 22px;
+    margin-left: 5px;
+    overflow: hidden;
+    text-indent: -999px;
+    width: 50px;
 }
-.header .mbox .homelogin li .m_qq {
-	display:block;
-	background:url(../images/sns2.png) 0px -26px no-repeat;
-	padding-left:18px;
+.header .g-slogan a.gz-weibo {
+    background-position: 0 0;
 }
-.header .mbox .homelogin li .m_taobao {
-	display:block;
-	background:url(../images/sns2.png) 0px -51px no-repeat;
-	padding-left:18px;
+.header .g-slogan a.gz-tencent {
+    background-position: -67px 0;
+}
+.header .g-slogan a.gz-qzong {
+    background-position: -134px 0;
+}
+.header .m-nav {
+    background: url("../images/nav-bg.png") repeat-x scroll 0 0 transparent;
+    height: 40px;
+    width: 100%;
+}
+.header .fixed {
+    left: 0;
+    position: fixed;
+    top: 0;
+    z-index: 9990;
+}
+.header .channel a {
+    color: #333333;
+}
+.header .channel {
+    float: left;
+}
+.header .channel li span {
+    color: #999999;
+    padding: 0 8px;
+}
+.header .channel li {
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 12px;
+}
+.header .channel li.first {
+    padding-left: 3px;
+}
+.header .channel li.last {
+    border-right: 0 none;
+}
+.header .channel li.new a {
+    background-image: url("../images/new.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+    display: block;
+    line-height: 16px;
+    padding-right: 28px;
+}
+.header .channel li a {
+    font-size: 14px;
+    font-weight: bold;
+}
+.header .channel li a.on {
+    color: #EE2266;
+}
+.header .channel li dl {
+    float: left;
+}
+.header .channel li dl dt, .header .channel li dl dd {
+    float: left;
+}
+.header .channel li dl dd {
+    padding: 1px 0 0 8px;
+}
+.header .channel dd a {
+    color: #666666;
+    font-size: 12px;
+    font-weight: normal;
+}
+.header .channel dt .xiaoxi-sum {
+    background: url("../images/feedsMsg.png") no-repeat scroll center top transparent;
+    color: #FFFFFF;
+    height: 17px;
+    line-height: 17px;
+    position: absolute;
+    right: -21px;
+    text-align: center;
+    top: -11px;
+    width: 23px;
+}
+.header .person, .header .regLogin, .header .unlogin-like {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #DCDCDC;
+    border-left: medium none;
+    border-top: 0 none;
+    height: 20px;
+    margin-top: 8px;
+    padding: 2px 0;
+    position: relative;
+}
+.header .person, .header .regLogin a {
+    color: #333333;
+}
+.header .person .userPhoto {
+    left: 2px;
+    position: absolute;
+    top: 2px;
+}
+.header .person .userPhoto img {
+    height: 20px;
+    width: 20px;
+}
+.header .person .arrow-dn, .header .xiaoxi .arrow-dn, .header .btn-sg .arrow-dn {
+    background: url("../images/arrow-d-x1.png") no-repeat scroll center center transparent;
+    height: 20px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 24px;
+}
+.header .person .arrow-dn, .header .xiaoxi .arrow-dn {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("../images/arrow-d-x2.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 6px 6px;
+    height: 20px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 24px;
+}
+.header .person a.gohome {
+    border-right: 1px dotted #DCDCDC;
+    color: #333333;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    max-width: 100px;
+    overflow: hidden;
+    padding: 0 24px 0 28px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: normal;
+    word-wrap: normal;
+}
+.header .person a.gohome:hover, .header .person .set-dropdown li a:hover, .header .regLogin a:hover, .header a.xiaoxi:hover, .header a.btn-sg:hover, .dropdown li a:hover {
+    color: #55AADD;
+    text-decoration: none;
+}
+.header .unlogin-like {
+    color: #EE3366;
+    display: none;
+    margin-right: 5px;
+}
+.header .unlogin-like-png {
+    background: url("../images/unlogin-like.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 10px;
+    margin: 6px 5px 0 0;
+    width: 8px;
+}
+.header .unlogin-like-text {
+    float: left;
+}
+.header .regLogin, .header .unlogin-like {
+    cursor: pointer;
+    line-height: 20px;
+    padding: 2px 20px 2px 10px;
+}
+.header .regLogin .arrow-dn {
+    background: url("../images/arrow-d.png") no-repeat scroll right center transparent;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    width: 10px;
+}
+.header .regLogin .arrow-dn-r {
+    background: url("../images/arrow-d.png") no-repeat scroll left center transparent;
+    border-right: 1px dotted #DCDCDC;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 13px;
+}
+.header .regLogin .login-dropdown, .share-dropdown {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E5E5E5;
+    display: none;
+    left: 0;
+    padding: 0 6px;
+    position: absolute;
+    top: 25px;
+    width: 108px;
+    z-index: 999;
+}
+.header .regLogin .login-dropdown li, .share-dropdown li {
+    border-bottom: 1px solid #F3F3F3;
+    padding: 6px 2px;
+}
+.header .regLogin .login-dropdown li.last, .share-dropdown li.last {
+    border-bottom: 0 none;
+}
+.header .shareIt{
+	margin:8px 0 0 0;
+	position:relative
+}.
+.header .fr {
+    display: inline;
+    float: right;
+}
+.header a.btn-signIn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../images/signIn-status.png") no-repeat scroll 7px 2px #92B03B;
+    border-color: -moz-use-text-color #DCDCDC #DCDCDC -moz-use-text-color;
+    border-image: none;
+    border-right: 1px solid #DCDCDC;
+    border-style: none solid solid none;
+    border-width: 0 1px 1px medium;
+    color: #FFFFFF;
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    margin: 8px 0 0 5px;
+    overflow: hidden;
+    padding: 0 12px 0 26px;
+    text-decoration: none;
+}
+.header a.btn-signIn:hover{
+	text-decoration:none;
+	background:#92b03b url(../images/signIn-status.png) 07px -23px no-repeat;
+	transition:bottom .3s;
+	-webkit-transition:bottom .3s;
+	-moz-transition:bottom .3s;
+	-o-transition:bottom .3s;
+	_background:#92b03b url(../images/signIn-status-ie6.png) 07px -23px no-repeat
+}
+.header a.btn-sg {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: -moz-use-text-color #DCDCDC #DCDCDC -moz-use-text-color;
+    border-image: none;
+    border-right: 1px solid #DCDCDC;
+    border-style: none solid solid none;
+    border-width: 0 1px 1px medium;
+    color: #333333;
+    display: block;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    padding: 0 26px 0 12px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 61px;
+}
+.header .share-link a {
+    background-image: url("../images/icons-share.png");
+    background-repeat: no-repeat;
+    display: block;
+    line-height: 16px;
+    padding-left: 20px;
+}
+.s-sina{background-position:0 -417px}
+.s-renren{background-position:0 -80px}
+.s-tencent{background-position:0 -280px}
+.s-qzone{background-position:0 -371px}
+.s-163{background-position:0 -463px}
+.s-douban{background-position:0 -120px}
+.s-qq{background-position:0 0}
+.s-tao{background-position:0 -163px}
+.s-alipay{background-position:0 -241px}
+.header .vline5 {
+    color: #CCCCCC;
+    font-size: 12px;
+    margin: 0 5px;
+}
+.header-search-button {
+    background: url("../images/big-searchIcon-x1.png") no-repeat scroll 14px 5px transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    height: 26px;
+    opacity: 0.9;
+    width: 35px;
+}
+.header .search-input-keyword {
+    background: none repeat scroll 0 center transparent;
+    border: 0 none;
+    color: #BBBBBB;
+    display: block;
+	font: 12px Arial,Helvetica,sans-serif,'Microsoft Yahei';
+    font-size: 12px;
+    margin-left: 15px;
+    margin-top: 5px;
+    width: 195px;
+	float: left;
+	outline: 0 none;
+	vertical-align: middle;
+}
+.header-nav-search {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../images/small-searchIcon.png") no-repeat scroll 6px 4px #FFFFFF;
+    border-color: -moz-use-text-color #DCDCDC #DCDCDC -moz-use-text-color;
+    border-image: none;
+    border-right: 1px solid #DCDCDC;
+    border-style: none solid solid none;
+    border-width: 0 1px 1px medium;
+    cursor: pointer;
+    display: none;
+    height: 24px;
+    margin: 8px -32px 0 5px;
+    width: 28px;
+}
+.header .layout980 {
+    margin: 0 auto;
+    width: 980px;
+}
+.header .iphoe-app {
+    background: url("../images/app-logo.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 49px;
+    margin: 15px 0 15px 10px;
+    overflow: hidden;
+    text-indent: -999px;
+    width: 93px;
+}
+.header .clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    visibility: hidden;
 }
 #share_goods_wrap {
 	background:url(../images/icon.gif) -7px -8px no-repeat;
@@ -470,7 +826,7 @@
 	color: #666666;
 }
 .to_top {
-	background: url("../images/gotop.gif") no-repeat scroll 0 0 transparent;
+	background: url("../images/gotop.png") no-repeat scroll 0 0 transparent;
 	float: left;
 	height: 60px;
 	overflow: hidden;
@@ -1271,8 +1627,8 @@ span.tag_title {
 }
 .login .login_list a {
 	float:left;
-	width:120px;
-	height:24px;
+	width:32px;
+	height:32px;
 	margin-right:10px;
 	margin:5px 10px 5px 0px;
 }
@@ -1280,10 +1636,29 @@ span.tag_title {
 	background:url(../images/l-tao.png) no-repeat;
 }
 .login .login_list .sina {
-	background:url(../images/l-sina.png) no-repeat;
+	background:url(../images/connect/Sina_small.png) no-repeat;
 }
 .login .login_list .qq {
-	background:url(../images/l-qq.png) no-repeat;
+	background:url(../images/connect/QQ_small.png) no-repeat;
+}
+.login .login_list .linkedin {
+	background:url(../images/connect/Linkedin_small.png) no-repeat;
+}
+.login .login_list .tencentWeibo {
+	background:url(../images/connect/TencentWeibo_small.png) no-repeat;
+}
+.login .login_list .renren {
+	background:url(../images/connect/Renren_small.png) no-repeat;
+	padding:0;
+}
+.login .login_list .NetEase {
+	background:url(../images/connect/NetEase_small.png) no-repeat;
+}
+.login .login_list .kaixin {
+	background:url(../images/connect/Kaixin_small.png) no-repeat;
+}
+.login .login_list .baidu {
+	background:url(../images/baidu_small.png) no-repeat;
 }
 .login th {
 	text-align:right;

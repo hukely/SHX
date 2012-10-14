@@ -180,21 +180,6 @@
 .login th{
 	font-size:14px;
 }
-.login .login_list a{ 
-	float:left;
-	width:120px;
-	height:24px;
-	margin-right:10px;
-}
-.login .login_list .taobao{ 
-	background:url(../images/l-tao.png) no-repeat;
-}
-.login .login_list .sina{ 
-	background:url(../images/l-sina.png) no-repeat;
-}
-.login .login_list .qq{ 
-	background:url(../images/l-qq.png) no-repeat;
-}
 .uc .register{ 
 	margin:10px 50px;
 }

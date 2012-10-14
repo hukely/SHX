@@ -501,32 +501,6 @@ function registerBox() {
 	                path:'/'
 	            });								  
 	        });
-			$('#myform').submit(function() { return false; });
-	        $('input[name="dosubmit"]', context).click(function(){ 
-	            var name=$.trim($('#name',context).val());
-	            var passwd=$.trim($('#passwd',context).val());
-	            var email=$.trim($('#email',context).val());
-	            var phone=$.trim($('#phone',context).val());
-	            var verify=$.trim($('#verify',context).val());
-	            $.post(
-					def.root+'index.php?m=uc&a=ajaxRegister',
-	            	{name:name, passwd:passwd, email:email, phone:phone, verify:verify},
-		            function(data){ 
-		                data=data.data;
-		                if(data.err=="0"){ 
-		                    $('.hint',context).html(data.msg);
-		                    return;
-		                }else{
-							 $('.hint',context).html(data.msg);
-							setTimeout(function(){ 
-								dialog.close();
-							},1000);
-						}
-						 window.location.reload();
-		            },
-		            'json'
-	            );
-	        });
 	        return false;	
 	    }
     );
@@ -546,7 +520,25 @@ function validatorReg(){
 		submitOnce:true,
 		formID:"myform",
 		onError:function(msg){alert(msg);},
-		submitAfterAjaxPrompt : '正在向服务器验证，请稍等...'
+		submitAfterAjaxPrompt : '正在向服务器验证，请稍等...',
+		ajaxForm:{
+			type : "POST",
+			url : def.root+"uc/ajaxRegister",
+			dataType : "json",
+			success : function(data){
+				data=data.data;alert(data);
+				if(data.err=="0"){ 
+					$('.hint',context).html(data.msg);
+					return;
+				}else{
+					 $('.hint',context).html(data.msg);
+					setTimeout(function(){ 
+						dialog.close();
+					},1000);
+				}
+				 window.location.reload();
+			}
+		}
 	});
 	$('#name').formValidator({onShowText:"请输入用户名",onShow:"请推填写登录用户名",onFocus:"6~12个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾",onCorrect:"该用户名可以注册"}).inputValidator({min:6,max:12,onError:"你输入的用户长度不正确,请确认"}).regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
 	    .ajaxValidator({
