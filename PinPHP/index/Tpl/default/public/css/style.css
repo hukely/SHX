@@ -255,7 +255,6 @@
 }
 .header .regLogin .arrow-dn-r {
     background: url("../images/arrow-d.png") no-repeat scroll left center transparent;
-    border-right: 1px dotted #DCDCDC;
     height: 20px;
     position: absolute;
     right: 0;

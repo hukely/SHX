@@ -34,8 +34,8 @@ $(function(){
 			<a title="SHX 手机版" href="#" class="iphoe-app">SHX 手机版</a>
 			<form action="<?php echo u('search/index');?>" method="post" onsubmit="return check_search(this);">
 				<div class="g-slogan">
-					<input type="text" autocomplete="off" value="懒得逛了，我搜～" name="k" maxlength="50" class="fl search-input-keyword" id="J_SearchKeyword">
-					<a title="搜索" class="header-search-button fl" id="J_SearchBarSubmit"></a>
+					<input type="text" autocomplete="off" value="<?php echo ($default_kw); ?>" name="keywords" maxlength="50" class="fl search-input-keyword" id="J_SearchKeyword">
+					<input value="" type="submit" class="header-search-button fl" id="J_SearchBarSubmit" />
 					<div class="suggest-wrap">
 						<div style="top: 29px; left: 8px; display: none;" class="suggest" id="J_SearchSuggestList">
 							<div class="suggest-tip"></div>
@@ -87,14 +87,15 @@ $(function(){
 			</ul>
 			<a title="搜索" class="header-nav-search fr"></a>
 			<a rel="signIn" href="javascript:;" class="btn-signIn fr">签到</a>
-			<div class="shareIt fr">
-				<a href="javascript:;" class="btn-sg">分享好东西<span class="arrow-dn"></span></a>
-				<!-- <ul class="dropdown shareit-dropdown">
+			
+			<?php if(isset($user)): ?><div class="shareIt fr">
+				<div id="share_goods" class="left top_share"><div class="button">分享好东西</div><span class="arrow-dn"></span></div>
+				<ul class="dropdown shareit-dropdown">
 					<li class="sg-li"><a class="hd-share-goods" href="javascript:;" rel="shareGoods">发布宝贝</a></li>
 					<li><a class="hd-create-topic" rel="nofollow" href="/u/topic/create">创作主题</a></li>
-				</ul> -->
+				</ul> 
 			</div>
-			<?php if(isset($user)): ?><div class="regLogin fr">
+			<div class="regLogin fr">
 				<a href="<?php echo u('uc/index');?>">空间</a><span class="vline5">|</span>
 				<a href="<?php echo u('uc/account_basic');?>">设置</a><span class="vline5">|</span>
                 <a href="<?php echo u('uc/logout');?>">退出</a>
@@ -125,6 +126,14 @@ $(function(){
 
 
 <script type="text/javascript">
+var default_kw = "<?php echo ($default_kw); ?>";
+$(function(){
+	$("#J_SearchKeyword").focus(function(){
+		$(this).val($(this).val()==default_kw ? '' : $(this).val());
+	}).blur(function(){
+		$(this).val($(this).val()=='' ? default_kw : $(this).val());
+	});
+});
 $(function() {
 	$(window).scroll(function(){
 		if($(window).scrollTop()>84){

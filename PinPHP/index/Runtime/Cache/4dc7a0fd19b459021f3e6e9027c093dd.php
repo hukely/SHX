@@ -87,14 +87,15 @@ $(function(){
 			</ul>
 			<a title="搜索" class="header-nav-search fr"></a>
 			<a rel="signIn" href="javascript:;" class="btn-signIn fr">签到</a>
-			<div class="shareIt fr">
+			
+			<?php if(isset($user)): ?><div class="shareIt fr">
 				<div id="share_goods" class="left top_share"><div class="button">分享好东西</div><span class="arrow-dn"></span></div>
-				<!-- <ul class="dropdown shareit-dropdown">
+				<ul class="dropdown shareit-dropdown">
 					<li class="sg-li"><a class="hd-share-goods" href="javascript:;" rel="shareGoods">发布宝贝</a></li>
 					<li><a class="hd-create-topic" rel="nofollow" href="/u/topic/create">创作主题</a></li>
-				</ul>  -->
+				</ul> 
 			</div>
-			<?php if(isset($user)): ?><div class="regLogin fr">
+			<div class="regLogin fr">
 				<a href="<?php echo u('uc/index');?>">空间</a><span class="vline5">|</span>
 				<a href="<?php echo u('uc/account_basic');?>">设置</a><span class="vline5">|</span>
                 <a href="<?php echo u('uc/logout');?>">退出</a>
