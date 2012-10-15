@@ -448,6 +448,11 @@ function login(){
 	                path:'/'
 	            });								  
 	        });
+			$("#name").focus(function(){
+				$(this).val($(this).val()=='邮箱/会员帐号' ? '' : $(this).val());
+			}).blur(function(){
+				$(this).val($(this).val()=='' ? '邮箱/会员帐号' : $(this).val());
+			});
 	        $('.submit',context).click(function(){ 
 	            var name=$.trim($('#name',context).val());
 	            var passwd=$.trim($('#passwd',context).val());
@@ -526,7 +531,8 @@ function validatorReg(){
 			url : def.root+"uc/ajaxRegister",
 			dataType : "json",
 			success : function(data){
-				data=data.data;alert(data);
+				var context=$('#register_dialog');
+				data=data.data;alert(data.err);
 				if(data.err=="0"){ 
 					$('.hint',context).html(data.msg);
 					return;

@@ -82,7 +82,9 @@
 <div style="display:none;" id="gotopbtn" class="to_top"></div>
 <script type="text/javascript">
 	$(document).ready(function(){
-	
+		$(function() {
+			$("#gotopbtn").mouseover(function() { $("#gotopbtn").css('background-position', '0 -47px'); }).mouseleave(function() { $("#gotopbtn").css('background-position', '0 0px'); });
+		});
 		//首先将#gotopbtn隐藏
 		 $("#gotopbtn").hide();
 	
