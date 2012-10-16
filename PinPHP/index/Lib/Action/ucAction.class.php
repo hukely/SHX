@@ -656,8 +656,7 @@ class ucAction extends baseAction {
     function sina_login() {
         require_once ROOT_PATH . '/includes/saetv2.ex.class.php';
         $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : 'callback';
-        $redirect_uri = $this->site_root . "index.php?m=uc&a=sina_" . $type;
-
+        $redirect_uri = $this->site_root . "uc/sina_" . $type;
         $o = new SaeTOAuthV2($this->setting['sina_app_key'], $this->setting['sina_app_Secret']);
         $login_url = $o->getAuthorizeURL($redirect_uri);
 
@@ -672,7 +671,7 @@ class ucAction extends baseAction {
         if (isset($_REQUEST['code'])) {
             $keys = array();
             $keys['code'] = $_REQUEST['code'];
-            $keys['redirect_uri'] = $this->site_root . "index.php?m=uc&a=sina_callback";
+            $keys['redirect_uri'] = $this->site_root . "uc/sina_callback";
 
             try {
                 $token = $o->getAccessToken('code', $keys);

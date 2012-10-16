@@ -25,7 +25,7 @@
                     <tr>
                         <th>帐号 :</th>
                         <td>
-                        	<input type="text" id="name" name="name" class="input_text" size="20" value="邮箱/会员帐号"  onMouseOver="this.focus()" onMouseOut="if(this.value=='')this.value='邮箱/会员帐号';" onFocus="this.select()" onClick="if(this.value=='邮箱/会员帐号')this.value=''"/>
+                        	<input type="text" id="name" name="name" class="input_text" size="20" value="邮箱/会员帐号" onBlur="if(this.value=='')this.value='邮箱/会员帐号';" onFocus="this.select()" onClick="if(this.value=='邮箱/会员帐号')this.value=''"/>
                         	<div class="hint error"></div>
                         </td>                    
                     </tr>
@@ -37,7 +37,7 @@
                     </tr>  
                     <tr>
                         <th></th>
-                        <td><input type="submit" class="submit" value="确定" name="dosubmit"/></td>                    
+                        <td><input type="submit" class="submit" value="确定" name="dosubmit" checked /></td>                    
                     </tr>                
                 </table>            
             </form>
