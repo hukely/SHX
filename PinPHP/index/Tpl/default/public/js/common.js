@@ -94,7 +94,7 @@ $(function(){
         loading: {
             img: def.root+"statics/images/masonry_loading.gif",
             msgText: "加载更多商品",
-            finishedMsg: '你好坏，都被你看光了!',
+            finishedMsg: '都被你看完咯!',
             finished: function(){
                 sp++;
                 if(sp>=def.waterfall_sp){
@@ -605,7 +605,7 @@ function validatorReg(){
 //验证码更换
 function changeVerify(obj){
 	var timenow =new Date().getTime();
-	obj.src =$(obj).attr('url')+'&time='+timenow;
+	obj.src =$(obj).attr('url')+'?time='+timenow;
 }
 
 //搜索

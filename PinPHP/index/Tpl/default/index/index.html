@@ -8,7 +8,7 @@
 		</div>
 		<if condition="$show_sp eq 1">
 			<div id="more" class="center">
-				<a href="{:u('index/index',array('sp'=>2,'p'=>$p))}" hidefocus="true"></a>
+				<a href="__APP__/?sp=2&p={$p}" hidefocus="true"></a><p>{$show_sp}</p>
 			</div>    	
 		</if> 
 		<if condition="$page neq ''">

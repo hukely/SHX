@@ -5,7 +5,7 @@
 <title><?php echo ($seo["seo_title"]); ?></title>
 <meta name="keywords" content="<?php echo ($seo["seo_keys"]); ?>" />
 <meta name="description" content="<?php echo ($seo["seo_desc"]); ?>" />
-<link rel="stylesheet" type="text/css" href="__TMPL__public/css/style.css" /><script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>
+<link rel="stylesheet" type="text/css" href="__TMPL__public/css/style.css" />
 <script type="text/javascript">
 var def=<?php echo ($def); ?>;
 </script> 
@@ -217,7 +217,7 @@ $(".regLogin").mouseleave(function() {
 
 		</div>
 		<?php if($show_sp == 1): ?><div id="more" class="center">
-				<a href="<?php echo u('index/index',array('sp'=>2,'p'=>$p));?>" hidefocus="true"></a>
+				<a href="__APP__/?sp=2&p=<?php echo ($p); ?>" hidefocus="true"></a><p><?php echo ($show_sp); ?></p>
 			</div><?php endif; ?> 
 		<?php if($page != ''): ?><div id="page" class="page mt20 clearfix" style="display: none;">
 				<span class="page_num"><?php echo ($page); ?></span>
