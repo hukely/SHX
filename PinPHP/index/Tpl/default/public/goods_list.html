@@ -56,7 +56,7 @@
 				<volist name="val['comments_list']" id="comment">
 					<div class="clearfix comment_item">
                     	<div class="fl">
-                        	<img src="{:uimg($comment['img'])}"  width="20px" height="20px" class="uimg fl"/><span class="uname">{$comment.name}</span> :
+                        	<img src="__ROOT__{:uimg($comment['img'])}"  width="20px" height="20px" class="uimg fl"/><span class="uname">{$comment.name}</span> :
                         </div>
                     	{$comment.info|mb_substr=0,50,'utf-8'}
 					</div>

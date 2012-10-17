@@ -879,6 +879,10 @@
 	background: url("../images/sidebardashed.jpg") repeat-x scroll center top transparent;
 	padding: 5px 0;
 }
+.new_footer img{
+	float:right;
+	padding-top:10px;
+}
 .new_footer .f_links {
 	padding-left: 10px;
 	line-height: 20px;
@@ -891,6 +895,8 @@
 }
 .new_footer .copyright {
 	padding:10px 0;
+	width:840px;
+	float:left;
 	color: #666666;
 }
 .to_top {
