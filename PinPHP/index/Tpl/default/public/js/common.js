@@ -546,7 +546,7 @@ function validatorReg(){
 			}
 		}
 	});
-	$('#name').formValidator({onShowText:"请输入用户名",onShow:"请推填写登录用户名",onFocus:"6~12个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾",onCorrect:"该用户名可以注册"}).inputValidator({min:6,max:12,onError:"你输入的用户长度不正确,请确认"}).regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
+	$('#name').formValidator({onShowText:"请输入用户名",onShow:"请推填写登录用户名",onFocus:"6~12个字母、数字、下划线",onCorrect:"该用户名可以注册"}).inputValidator({min:6,max:12,onError:"你输入的用户长度不正确,请确认"}).regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
 	    .ajaxValidator({
 		dataType : "html",
 		type : "POST",
@@ -564,7 +564,7 @@ function validatorReg(){
 		onError : "该用户名不可用，请更换用户名",
 		onWait : "正在进行合法性校验，请稍候..."
 	});
-	$("#passwd").formValidator({onShow:"6~16个字符，包括字母、数字、特殊符号，区分大小写",onFocus:"6~16个字符，包括字母、数字、特殊符号，区分大小写",onCorrect:"密码格式正确"}).inputValidator({min:6,max:16,empty:{leftEmpty:false,rightEmpty:false,emptyError:"密码两边不能有空符号"},onError:"密码长度错误,请确认"}).passwordValidator({compareID:"us"});
+	$("#passwd").formValidator({onShow:"6~16个字符，区分大小写",onFocus:"6~16个字符，包括字母、数字、特殊符号，区分大小写",onCorrect:"密码格式正确"}).inputValidator({min:6,max:16,empty:{leftEmpty:false,rightEmpty:false,emptyError:"密码两边不能有空符号"},onError:"密码长度错误,请确认"}).passwordValidator({compareID:"us"});
 	$("#confirm_passwd").formValidator({onShow:"再次输入密码",onFocus:"必须与登录密码相同",onCorrect:"密码一致"}).inputValidator({min:1,empty:{leftEmpty:false,rightEmpty:false,emptyError:"重复密码两边不能有空符号"},onError:"重复密码不能为空,请确认"}).compareValidator({desID:"passwd",operateor:"=",onError:"2次密码不一致,请确认"});
 	$("#email").formValidator({onShow:"请输入邮箱",onFocus:"email地址包含6-100个字符及@符",onCorrect:"邮箱格式正确",defaultValue:"@"}).inputValidator({min:6,max:100,onError:"你输入的邮箱长度非法,请确认"}).regexValidator({regExp:"^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",onError:"你输入的邮箱格式不正确"}).ajaxValidator({
 		dataType : "html",

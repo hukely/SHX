@@ -336,9 +336,9 @@ class itemsAction extends baseAction {
             if ($_FILES['img']['name'] != '') {
                 $upload_list = $this->_upload($_FILES['img']);
 
-                $data['simg'] = __ROOT__ . '/data/items/' . date("Y-m-d") . '/s_' . $upload_list['0']['savename'];
-                $data['img'] = __ROOT__ . '/data/items/' . date("Y-m-d") . '/m_' . $upload_list['0']['savename'];
-                $data['bimg'] = __ROOT__ . '/data/items/' . date("Y-m-d") . '/b_' . $upload_list['0']['savename'];
+                $data['simg'] = '/data/items/' . date("Y-m-d") . '/s_' . $upload_list['0']['savename'];
+                $data['img'] = '/data/items/' . date("Y-m-d") . '/m_' . $upload_list['0']['savename'];
+                $data['bimg'] = '/data/items/' . date("Y-m-d") . '/b_' . $upload_list['0']['savename'];
                 //$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
             } else {
                 $this->error('商品图片不能为空');

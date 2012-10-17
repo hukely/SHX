@@ -2,8 +2,14 @@
     <div class="item mt15 masonry_brick jq_corner" data-corner="7px" iid="{$val['id']}">
         <div class="item_t">
             <div class="img tc"> 
+			<!-- 本站后台图片上传在商品表中sid属性为2 -->
+			<if condition="$val.sid eq 2">
+            	<a href="__ROOT__{$val['bimg']}" rel="nofollow" class="fancybox" title="{$val.title}">
+					<img alt="{$val.title}" url="{:base64_encode(__ROOT__.$val['img'])}" style="display:inline;" class="encode_url">
+				<else/>
             	<a href="{$val['bimg']}" rel="nofollow" class="fancybox" title="{$val.title}">
-                	<img alt="{$val.title}" url="{:base64_encode($val['img'])}" style="display:inline;" class="encode_url">
+					<img alt="{$val.title}" url="{:base64_encode($val['img'])}" style="display:inline;" class="encode_url">
+				</if>
             	</a>
                 <span class="price">￥{$val.price}</span> 
                 <div class="btns">
