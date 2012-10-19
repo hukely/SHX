@@ -13,8 +13,8 @@
 		$sUrl = "https://graph.qq.com/oauth2.0/token";
 		$aGetParam = array(
 			"grant_type"    =>    "authorization_code",
-			"client_id"        =>    $this->setting[$this->sns.'_app_key'],
-			"client_secret"    =>    $this->setting[$this->sns.'_app_Secret'],
+			"client_id"        =>    WB_AKEY,
+			"client_secret"    =>   WB_SKEY,
 			"code"            =>    $_GET["code"],
 			"state"            =>    $_GET["state"],
 			"redirect_uri"    =>    $_SESSION["URI"]
@@ -113,6 +113,6 @@
         }
         $_SESSION['login_type'] = 'qq';
 
-        header('Location:' . urldecode($_COOKIE['redirect']));
+       header('Location:' . urldecode($_COOKIE['redirect']));
 		
     //}

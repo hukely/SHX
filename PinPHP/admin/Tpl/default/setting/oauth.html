@@ -3,8 +3,15 @@
   <div class="pad-10">
     <div class="col-tab">
       <ul class="tabBut cu-li">
-        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">新浪微博</li>
-        <li id="tab_setting_2" onclick="SwapTab('setting','on','',2,2);">腾讯QQ</li>
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',9,1);">新浪微博</li>
+        <li id="tab_setting_2" onclick="SwapTab('setting','on','',9,2);">腾讯QQ</li>
+        <li id="tab_setting_3" onclick="SwapTab('setting','on','',9,3);">人人网</li>
+        <li id="tab_setting_4" onclick="SwapTab('setting','on','',9,4);">腾讯微博</li>
+        <li id="tab_setting_5" onclick="SwapTab('setting','on','',9,5);">豆瓣</li>
+        <li id="tab_setting_6" onclick="SwapTab('setting','on','',9,6);">支付宝</li>
+        <li id="tab_setting_7" onclick="SwapTab('setting','on','',9,7);">淘宝</li>
+        <li id="tab_setting_8" onclick="SwapTab('setting','on','',9,8);">Linkedin</li>
+        <li id="tab_setting_9" onclick="SwapTab('setting','on','',9,9);">网易</li>
 
       </ul>
       
@@ -33,6 +40,93 @@
             </tr>            
         </table>    
       </div>
+	  <div id="div_setting_3" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[renren_app_key]" value="{$set.renren_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[renren_app_Secret]" value="{$set.renren_app_Secret}"></td>
+            </tr>            
+        </table>    
+      </div>
+	  <div id="div_setting_4" class="contentList pad-10 hidden">
+          <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[tencent_app_key]" value="{$set.tencent_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[tencent_app_Secret]" value="{$set.tencent_app_Secret}"></td>
+            </tr>            
+        </table>
+      </div>
+      
+      <div id="div_setting_5" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[douban_app_key]" value="{$set.douban_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[douban_app_Secret]" value="{$set.douban_app_Secret}"></td>
+            </tr>            
+        </table>    
+      </div>
+	  <div id="div_setting_6" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[alipay_app_key]" value="{$set.alipay_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[alipay_app_Secret]" value="{$set.alipay_app_Secret}"></td>
+            </tr>            
+        </table>    
+      </div>
+	  <div id="div_setting_7" class="contentList pad-10 hidden">
+          <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[taobao_app_key]" value="{$set.taobao_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[taobao_app_Secret]" value="{$set.taobao_app_Secret}"></td>
+            </tr>            
+        </table>
+      </div>
+      
+      <div id="div_setting_8" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[Linkedin_app_key]" value="{$set.Linkedin_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[Linkedin_app_Secret]" value="{$set.Linkedin_app_Secret}"></td>
+            </tr>            
+        </table>    
+      </div>
+	  <div id="div_setting_9" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[163_app_key]" value="{$set.163_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[163_app_Secret]" value="{$set.163_app_Secret}"></td>
+            </tr>            
+        </table>    
+      </div>
+	  
       <div class="bk15"></div>
       <div class="btn"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();" name="dosubmit" class="button" id="dosubmit"></div>
     </div>

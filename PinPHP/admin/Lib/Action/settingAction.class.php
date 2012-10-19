@@ -18,7 +18,8 @@ class settingAction extends baseAction
 		$setting_mod = M('setting');
 		foreach($this->_stripcslashes($_POST['site']) as $key=>$val ){
 			$setting_mod->where("name='".$key."'")->save(array('data'=>$val));
-		}
+			echo $key.'='.$val.'<br />';
+		}die;
 		$this->success('修改成功',U('setting/index'));
 	}
 }

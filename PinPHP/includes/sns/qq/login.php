@@ -8,12 +8,11 @@ $aScope = array (
 );
 $sState = md5(date("YmdHis".getip()));
 $_SESSION["state"] = $sState;
-$sUri =  "http://".$_SERVER["HTTP_HOST"].str_replace("/sns/login", "/sns/callback", $_SERVER["REQUEST_URI"]);
-$_SESSION["URI"] = $sUri;
+$_SESSION["URI"] = WB_CALLBACK_URL;
 $aParam = array(
     "response_type"    => "code",
-    "client_id"        =>    $this->setting[$this->sns.'_app_key'],
-    "redirect_uri"    =>    $sUri,
+    "client_id"        =>    WB_AKEY,
+    "redirect_uri"    =>    WB_CALLBACK_URL,
     "state"            =>    $sState,
 	"scope"            =>    join(",", $aScope),
 );
@@ -23,4 +22,5 @@ foreach($aParam as $key=>$val){
 }
 $sUrl = "https://graph.qq.com/oauth2.0/authorize?";
 $sUrl .= join("&",$aGet);
-    header("location:".$sUrl);
+COOKIE('redirect', $_SERVER['HTTP_REFERER']);
+header("location:".$sUrl);
