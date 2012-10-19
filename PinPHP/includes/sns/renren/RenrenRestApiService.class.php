@@ -17,8 +17,7 @@
  * @Link:	http://www.dianboom.com
  */
 
-require_once 'HttpRequestService.class.php';
-require_once 'config.inc.php'; #Include configure resources
+require_once(ROOT_PATH.'/includes/sns/'.$this->sns.'/HttpRequestService.class.php');
 
  class RenrenRestApiService extends HttpRequestService{
 

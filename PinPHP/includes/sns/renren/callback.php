@@ -9,9 +9,9 @@ if($code)
 //使用code换取accesstoken
 //获取accesstoken
 $oauthApi = new RenrenOAuthApiService;
-$post_params = array('client_id'=>$config->APIKey,
-		'client_secret'=>$config->SecretKey,
-		'redirect_uri'=>$config->redirecturi,
+$post_params = array('client_id'=>WB_AKEY,
+		'client_secret'=>WB_SKEY,
+		'redirect_uri'=>WB_CALLBACK_URL,
 		'grant_type'=>'authorization_code',
 		'code'=>$code
 		);
