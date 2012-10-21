@@ -1,0 +1,48 @@
+taobao
+App Key:21232099
+App Secret:0bfc01af9cbaedf9a40bfe6d4044e58c
+
+renren
+App Key:188522c6a15b4cf699c17b6ef309efbd
+App Secret:49d9d8f987db4329a01247a3afdace3a
+
+sina
+App Key:1845762250
+App Secret:cee01b709262b72cdb80deb3c2e381ab
+
+App Key:100314943
+App Secret:c358e97270d3a2ca7916a1249011253b
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
+App Key:
+App Secret:
+
