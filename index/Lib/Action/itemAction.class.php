@@ -20,7 +20,11 @@ class itemAction extends baseAction {
         foreach ($item['items_tags'] as $tag) {
             $tag_str .= $tag['name'] . ' ';
         }
-
+		if($item['sid'] == 2) {
+			$item['img'] = __ROOT__.$item['img'];
+			$item['simg'] = __ROOT__.$item['simg'];
+			$item['bimg'] = __ROOT__.$item['bimg'];
+		}
         $this->seo['seo_title'] = !empty($item['seo_title']) ? $item['seo_title'] : $item['title'];
         $this->seo['seo_title'] = $this->seo['seo_title'] . ' - ' . $this->setting['site_name'];
         $this->seo['seo_keys'] = !empty($item['seo_keys']) ? $item['seo_keys'] : $tag_str;

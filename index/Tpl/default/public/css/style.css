@@ -1119,6 +1119,7 @@ span.tag_title {
     padding: 0 5px;
     position: relative;
     width: 750px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 #content {
     background: none repeat scroll 0 0 #FFFFFF;
@@ -1174,9 +1175,25 @@ span.tag_title {
     text-align: center;
     width: 310px;
 }
+.add-1 .bookmark a {
+	 color: #1F518E;
+}
+.add-1 .bookmark a:hover {
+	 text-decoration: underline;
+}
+.add-1 p a {
+    color: #588CC7;
+}
 .add-1 p:first-child, .add-1 .bookmark {
     color: #373D48;
     font-size: 15px;
+}
+.add-1 form {
+    padding: 3px 0 0 25px;
+    text-align: left;
+}
+.add-1 fieldset {
+    text-align: center;
 }
 .add-1 p {
     color: #8A8F9C;
@@ -1201,6 +1218,82 @@ span.tag_title {
     white-space: nowrap;
 	cursor: pointer;
 }
+.add-2 form li ul {
+    margin-top: -3px;
+}
+.add-2 form label {
+    color: #373D48;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 18px;
+    padding: 0 0 6px;
+}
+.add-2 form li li {
+	  padding-bottom: 0;
+}
+.add-2 form li li label {
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 24px;
+    padding: 0 0 0 10px;
+}
+.add-2 form .button {
+    background: none repeat scroll 0 0 #588CC7;
+    border: 0 none;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 22px;
+    margin: 0;
+    overflow: visible;
+    padding: 8px 8px 10px 7px;
+    text-align: center;
+    width: 95px;
+}
+.add-2 form label em, .page-deal-create label em {
+    color: #8A8F9C;
+    font-style: normal;
+    font-weight: normal;
+}
+.container  input[type="text"], .container  textarea{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #8A8F9C #B4B9C7 #B4B9C7;
+    border-image: none;
+    border-right: 1px solid #B4B9C7;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    width: 270px;
+}
+.container  form .text {
+    margin: 0;
+    width: 408px;
+}
+.container  input[type="text"]{
+    height: 18px;
+    padding: 10px 5px;
+}
+.container  .add-2 form select {
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    width: 420px;
+	border:0;
+}
+.container  button {
+    cursor: pointer;
+}
 .container .left {
     float: left;
 }
@@ -1212,9 +1305,6 @@ span.tag_title {
 }
 #content hr {
     display: none;
-}
-.container footer{
-    display: block;
 }
 .follow-twitter .ic-follow-twitter {
     background-attachment: scroll;
@@ -1234,8 +1324,6 @@ span.tag_title {
     vertical-align: middle;
     width: 21px;
 }
-
-
 #more {
 	display: block;
 	margin: 10px auto 20px;
