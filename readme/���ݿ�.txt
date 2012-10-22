@@ -1,4 +1,0 @@
-2012年10月10日
-数据库  表前缀:pp_
-
-为user添加   phone字段    bigint  11	not null	unsigned	

@@ -1,8 +1,0 @@
-1.数据库目前表自带表前缀: pp_
-
-2.系统默认不包含Runtime文件夹,此为系统缓存文件存放目录,网站运行时会自动生成.
-当服务器中不含执行权限时,需手动自行创建,否则无法运行.
-Runtime又包含Cache, Logs, Data, Temp四个文件夹
-
-3.修改网站运行模式为 DEBUG 模式,会在前台提示错误详细信息
-可于  /thinkphp/thinkphp.php 中设置 APP_DEBUG 选项为false
