@@ -1114,6 +1114,128 @@ span.tag_title {
 .item .comments_list .uname{ 
 	color:#FF89A7;
 }
+.container {
+    margin: 0 auto;
+    padding: 0 5px;
+    position: relative;
+    width: 750px;
+}
+#content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin: 0 0 0 70px;
+    padding: 20px;
+}
+#content section {
+    margin: 0 auto;
+}
+.add-1 {
+    margin: -6px 0 0;
+    padding: 0 0 14px;
+}
+.add-2 .pic_preview {
+    float: left;
+    padding: 4px 0 0;
+    width: 200px;
+}
+.add-2 .add-form {
+    float: right;
+    padding: 0 0 6px;
+    width: 420px;
+}
+.add-2 form li {
+    padding: 0 0 15px;
+}
+.add-2 form ul {
+    margin: 0 0 5px;
+}
+.container fieldset {
+    text-align: left;
+}
+.add-1:after, .add-2:after, .add-2 form:after, .add-2 form li:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.add-1 h1 {
+    color: #373D48;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 18px;
+    margin: 0 0 15px;
+    padding: 2px 20px 16px 0;
+    text-align: center;
+	border-bottom: 1px solid #ECEEF4;
+}
+.add-1 .col {
+    padding: 0;
+    text-align: center;
+    width: 310px;
+}
+.add-1 p:first-child, .add-1 .bookmark {
+    color: #373D48;
+    font-size: 15px;
+}
+.add-1 p {
+    color: #8A8F9C;
+    font-size: 13px;
+    font-style: normal;
+    line-height: 18px;
+    padding-bottom: 18px;
+}
+.add-1 p strong {
+    display: block;
+}
+.add-1 button {
+    background: none repeat scroll 0 0 #4380C9;
+    border: 0 none;
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 5px 0 0;
+    padding: 5px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+	cursor: pointer;
+}
+.container .left {
+    float: left;
+}
+.container .right {
+    float: right;
+}
+.container  .hidden {
+    display: none !important;
+}
+#content hr {
+    display: none;
+}
+.container footer{
+    display: block;
+}
+.follow-twitter .ic-follow-twitter {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("../images/icon.png");
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 800px 800px;
+}
+.follow-twitter .ic-follow-twitter {
+    background-position: -142px -91px;
+    display: inline-block;
+    height: 20px;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+    width: 21px;
+}
+
+
 #more {
 	display: block;
 	margin: 10px auto 20px;

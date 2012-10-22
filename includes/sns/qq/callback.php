@@ -33,9 +33,10 @@
 			$res = substr($res, $lpos + 1, $rpos - $lpos - 1);
 			$msg = json_decode($res);
 			if (isset($msg->error)) {
-				echo "<h3>error:</h3>" . $msg->error;
+				/* echo "<h3>error:</h3>" . $msg->error;
 				echo "<h3>msg  :</h3>" . $msg->error_description;
-				exit;
+				exit; */
+				$this->error($msg->error . $msg->error_description);
 			}
 		}
 		parse_str($res, $res);

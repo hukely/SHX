@@ -38,7 +38,6 @@ require_once(ROOT_PATH.'/includes/sns/'.$this->sns.'/HttpRequestService.class.ph
 	
 	public function __construct(){
 		global $config;
-		
 		parent::__construct();
 		
 		$this->_config = $config;

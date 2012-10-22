@@ -199,7 +199,7 @@ class TopClient
 		if (isset($respObject->code))
 		{
 			$logger = new LtLogger;
-			$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/top_biz_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
+			$logger->conf["log_file"] = LOG_PATH.'sns/taobao/top_biz_err_' . $this->appkey . "_" . date("Y-m-d") . ".log";
 			$logger->log(array(
 				date("Y-m-d H:i:s"),
 				$resp

@@ -30,8 +30,8 @@ $(function(){
 <div id="header" class="header">
 	<div class="m-head">
 		<div class="layout980 clearfix">
-			<h1 class="g-logo"><a href="__APP__/">SHX，发现喜欢<span class="goup"></span></a></h1>
-			<a title="SHX 手机版" href="#" class="iphoe-app">SHX 手机版</a>
+			<h1 class="g-logo"><a href="__APP__/">生活秀，发现喜欢<span class="goup"></span></a></h1>
+			<a title="生活秀 手机版" href="#" class="iphoe-app">生活秀 手机版</a>
 			<form action="{:u('search/index')}" method="post" onsubmit="return check_search(this);">
 				<div class="g-slogan">
 					<input type="text" autocomplete="off" value="{$default_kw}" name="keywords" maxlength="50" class="fl search-input-keyword" id="J_SearchKeyword">
@@ -96,12 +96,12 @@ $(function(){
 			<div class="shareIt fr">
 				<div id="share_goods" class="left top_share"><div class="button">分享好东西</div><span class="arrow-dn"></span></div>
 				<ul class="dropdown shareit-dropdown">
-					<li class="sg-li"><a class="hd-share-goods" href="javascript:;" rel="shareGoods">发布宝贝</a></li>
-					<li><a class="hd-create-topic" rel="nofollow" href="/u/topic/create">创作主题</a></li>
+					<li class="sg-li"><a class="hd-share-goods" href="javascript:;" rel="shareGoods">本地上传</a></li>
+					<li><a class="hd-create-topic" rel="nofollow" href="/u/topic/create"></a>分享插件</li>
 				</ul> 
 			</div>
 			<div class="regLogin fr">
-				<a href="{:u('uc/index')}">空间</a><span class="vline5">|</span>
+				<a href="{:u('uc/index')}">{$u.name}</a><span class="vline5">|</span>
 				<a href="{:u('uc/account_basic')}">设置</a><span class="vline5">|</span>
                 <a href="{:u('uc/logout')}">退出</a>
 			</div>	

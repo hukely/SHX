@@ -23,7 +23,7 @@ class snsAction extends baseAction {
 	//获取access_token
 	function callback() {
 		require_once(ROOT_PATH.'/includes/sns/'.$this->sns.'/callback.php');
-	
+		
 	}	
 	
 	//获取用户信息,账号绑定

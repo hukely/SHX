@@ -4,5 +4,8 @@
 /PinPHP/index/Runtime/Cache
 /PinPHP/index/Runtime/Logs
 /PinPHP/index/Runtime/Temp
+/pinphp/index/Runtime/Data
+/PinPHP/admin/Runtime/Data
+/pinphp/admin/Runtime/Cache
+/PinPHP/admin/Runtime/Temp
 /PinPHP/admin/Runtime/Logs
-/pinphp/index/Runtime/Cache
