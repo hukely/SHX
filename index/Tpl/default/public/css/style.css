@@ -1259,6 +1259,12 @@ span.tag_title {
     font-style: normal;
     font-weight: normal;
 }
+.add-2 form textarea {
+    height: 70px;
+    overflow: auto;
+    padding: 10px 0 0 10px;
+    resize: none;
+}
 .container  input[type="text"], .container  textarea{
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;

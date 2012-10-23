@@ -50,6 +50,11 @@ class itemsAction extends baseAction {
 
         $key = 1;
         foreach ($items_list as $k => $val) {
+			if( $items_list[$k]['sid'] == 2) {
+				 $items_list[$k]['img'] = __ROOT__. $items_list[$k]['img'];
+				 $items_list[$k]['simg'] = __ROOT__. $items_list[$k]['simg'];
+				 $items_list[$k]['bimg'] = __ROOT__. $items_list[$k]['bimg'];
+			}
             $items_list[$k]['key'] = ++$p->firstRow;
             $items_list[$k]['items_cate'] = $items_cate_mod->field('name')->where('id=' . $val['cid'])->find();
         }
@@ -99,9 +104,9 @@ class itemsAction extends baseAction {
             
             if ($_FILES['img']['name'] != '') {
                 $upload_list = $this->_upload($_FILES['img']);
-                $data['simg'] = __ROOT__ . '/data/items/' . date("Y-m-d") . '/s_' . $upload_list['0']['savename'];
-                $data['img'] = __ROOT__ . '/data/items/' . date("Y-m-d") . '/m_' . $upload_list['0']['savename'];
-                $data['bimg'] = __ROOT__ . '/data/items/' . date("Y-m-d") . '/b_' . $upload_list['0']['savename'];
+                $data['simg'] = $upload_list['0']['shortUrl'] . '/s_' . $upload_list['0']['savename'];
+				$data['img'] = $upload_list['0']['shortUrl'] . '/m_' . $upload_list['0']['savename'];
+				$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
             }
             $result = $items_mod->save($data);
 
@@ -139,7 +144,7 @@ class itemsAction extends baseAction {
                     $pic_list[] = array(
                         'item_id' => $data['id'],
                         'add_time' => time(),
-                        'url' => __ROOT__ . "/data/items/" . date("Y-m-d") . "/b_" . $_img['savename'],
+                        'url' => ROOT_PATH . "/data/items/" . date("Y-m-d") . "/b_" . $_img['savename'],
                     );
                 }
                 $items_pics_mod->addAll($pic_list);
@@ -336,9 +341,9 @@ class itemsAction extends baseAction {
             if ($_FILES['img']['name'] != '') {
                 $upload_list = $this->_upload($_FILES['img']);
 
-                $data['simg'] = '/data/items/' . date('Y') . '/' . date("md") . '/s_' . $upload_list['0']['savename'];
-                $data['img'] = '/data/items/'. date('Y') . '/' . date("md") . '/m_' . $upload_list['0']['savename'];
-                $data['bimg'] = '/data/items/' . date('Y') . '/' . date("md") . '/b_' . $upload_list['0']['savename'];
+                $data['simg'] = $upload_list['0']['shortUrl'] . '/s_' . $upload_list['0']['savename'];
+				$data['img'] = $upload_list['0']['shortUrl'] . '/m_' . $upload_list['0']['savename'];
+				$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
                 //$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
             } else {
                 $this->error('商品图片不能为空');
@@ -365,7 +370,7 @@ class itemsAction extends baseAction {
                         $pic_list[] = array(
                             'item_id' => $new_item_id,
                             'add_time' => time(),
-                            'url' => __ROOT__ . "/data/items/" . date("Y-m-d") . "/b_" . $_img['savename'],
+                            'url' =>ROOT_PATH . "/data/items/" . date("Y-m-d") . "/b_" . $_img['savename'],
                         );
                     }
                     $items_pics_mod->addAll($pic_list);
@@ -474,7 +479,8 @@ class itemsAction extends baseAction {
         $upload->allowExts = explode(',', 'jpg,gif,png,jpeg');
 
         if (empty($path)) {
-            $upload->savePath = './data/items/' . date('Y') . '/' . date("md") . "/";
+			$shortUrl = '/data/items/' . date('Y') . '/' . date("md") . "/";
+            $upload->savePath = ROOT_PATH.$shortUrl;
         } else {
             $upload->savePath = $path;
         }
@@ -494,6 +500,7 @@ class itemsAction extends baseAction {
         } else {
             //取得成功上传的文件信息
             $uploadList = $upload->getUploadFileInfo();
+            $uploadList[0]['shortUrl'] = $shortUrl;
         }
         return $uploadList;
     }

@@ -13,13 +13,13 @@
 				<div class="col right">
 					<p><strong>从您的电脑上传照片</strong>至您的欢喜目录</p>
 
-					<form enctype="multipart/form-data" class="upload-file" method="post" action="__APP__/addPic">
+					<form enctype="multipart/form-data" class="upload-file" method="post" action="__APP__/item/sharePicture">
 						<div style="display:none">
 						<input type="hidden" value="uAK9vxgMhHKeZIKhlJbDFkDu5ykwp1X3" name="csrfmiddlewaretoken"></div>
 						<fieldset>
 							<label class="hidden">上传文件</label>
-							<input type="file" class="browse" name="upload-file"><br>
-							<button type="submit">上传</button>
+							<input type="file" class="browse" name="img"><br>
+							<button type="submit" name="submitPicture">上传</button>
 						</fieldset>
 					</form>
 				</div>
