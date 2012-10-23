@@ -1,0 +1,227 @@
+<html>
+    <head>
+	<title>
+	Fancy - Tagger
+	</title>
+	
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-main.css?v=011" />
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/tagger-bookmarklet.css?v=007" />
+	<!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie8.css?v=009" />
+	<![endif]-->
+	<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie.css?v=008" />
+	<![endif]-->
+	<!--[if lte IE 6]>
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie6.css?v=005" />
+	<![endif]-->
+
+	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.core.js" language="javascript"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.widget.js" language="javascript"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.mouse.js" language="javascript"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.draggable.js" language="javascript"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.countdown.min.js" language="javascript"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/bookmarklet-tagger.js?v=0051" language="javascript"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/_bookmarklet_helper.js?v=0051" language="javascript"></script>
+
+	<script type="text/javascript">
+	$(document).ajaxSend(function(event, xhr, settings) {
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		function sameOrigin(url) {
+			// url could be relative or scheme relative or absolute
+			var host = document.location.host; // host + port
+			var protocol = document.location.protocol;
+			var sr_origin = '//' + host;
+			var origin = protocol + sr_origin;
+			// Allow absolute or scheme relative URLs to same origin
+			return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+				(url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+				// or any other URL that isn't scheme relative or absolute i.e relative.
+				!(/^(\/\/|http:|https:).*/.test(url));
+		}
+		function safeMethod(method) {
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+	
+		function postMethod(method) {
+			return (/^POST$/.test(method));
+		}
+		if (postMethod(settings.type) && sameOrigin(settings.url)) {
+			var val_cookie = getCookie('csrftoken');
+			if(typeof(val_cookie) != undefined && val_cookie != null && val_cookie.length > 0 )
+				xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+		}
+	});
+	</script>
+
+    </head>
+    
+    <body class="tagger-js" style="background-color: #eff1f7;">
+	<div id="main">
+	    <form class="no_image" style="display:none;">
+		    <div id="f-head">
+			    <a class="close_box" href="#"><img style="float: right;" src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png" /></a>
+	    
+			    <img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-logo.png" />
+		    </div>
+		    <div id="f-main">
+			    <img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/error_ico.png">
+			    <p><strong>Couldn't find any good images on this page.</strong></p>
+			    <p>The images might not be large enough, or they might be protected or inside a web plugin.</p>
+			    <p>Try again on a different page?</p>
+	    
+		    </div>
+		    <div id="f-foot">
+			    <a class="f-button close_box" href="#">Cancel</a>
+		    </div>
+	    </form>
+	    <form class="add_thing" style="display:none;">
+			<div id="f-head">
+				<a class="close_box" href="#"><img style="float: right;" src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png" /></a>
+				<img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-logo.png" />
+			</div>
+			<div id="f-main">
+				<img class="f-preview" id="f-picked-image" src="" pick_id="">
+				<div id="f-imgpick">
+					<a class="img-pick" did="0" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-left.png"></a><a class="img-pick" did="1" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-right.png"></a>
+				</div>
+				<input type="text" id="f-whatisit" name="f-whatisit" class="f-field">
+				<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-thing" maxlength="200">
+		
+				<select name="f-category" id="f-category-for-thing" size="1">
+					<option value="-1">Put in category...</option>
+					<option value="-2">-----</option>
+					
+					<option value="Mens">Men&#39;s</option>							
+					
+					<option value="Womens">Women&#39;s</option>							
+					
+					<option value="Kids">Kids</option>							
+					
+					<option value="Pets">Pets</option>							
+					
+					<option value="Home">Home</option>							
+					
+					<option value="Gadgets">Gadgets</option>							
+					
+					<option value="Art">Art</option>							
+					
+					<option value="Food">Food</option>							
+					
+					<option value="Media">Media</option>							
+					
+					<option value="Architecture">Architecture</option>							
+					
+					<option value="travel-and-destinations">Travel &amp; Destinations</option>							
+					
+					<option value="sports-and-outdoors">Sports &amp; Outdoors</option>							
+					
+					<option value="diy-and-crafts">DIY &amp; Crafts</option>							
+					
+					<option value="Workspace">Workspace</option>							
+					
+					<option value="cars-and-vehicles">Cars &amp; Vehicles</option>							
+					
+					<option value="Other">Other</option>							
+					
+				</select>
+			</div>
+	
+			<div id="f-foot">
+			    <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='q98Mj2eAi6x8Yt7TAsd29PPYSsa7UN9A' /></div>
+				<span class="next-action">
+				<a class="f-button add_new_thing" href="#">Fancy it!</a> <a href="#" class="l2 cancel_add_thing">Cancel</a> <!--<a href="#" class="l2" id="f-taglink">Tag photo</a>-->
+				</span>
+				<span class="status-msg" style="display:none;margin-left:5px;">
+				<strong>Saving...</strong>
+				</span>
+			</div>
+		
+	    </form>
+	    
+	    <form class="add_tags">
+			<div id="f-head">
+				<a class="close_box" href="#"><img style="float: right;" src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png" /></a>
+				<img id="f-logo" src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-logo.png" />
+			</div>
+			<div id="f-main">
+				<fieldset class="image" style="display:none;">
+				<div class="tag-photo" id="f-tagger"><img id="f-tag-image" src=""/></div>
+				</fieldset>
+				
+				<fieldset class="action">				
+				<ul>
+					<li>
+					<label></label>
+					</li>
+					<li style="display:none;" class="second-tab">
+					<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-photo" maxlength="200">
+					<select name="f-category" id="f-category-for-photo" size="1">
+						<option value="-1">Put in category...</option>
+						<option value="-2">-----</option>
+						
+						<option value="Mens">Mens</option>							
+						
+						<option value="Womens">Womens</option>							
+						
+						<option value="Kids">Kids</option>							
+						
+						<option value="Pets">Pets</option>							
+						
+						<option value="Home">Home</option>							
+						
+						<option value="Gadgets">Gadgets</option>							
+						
+						<option value="Art">Art</option>							
+						
+						<option value="Food">Food</option>							
+						
+						<option value="Media">Media</option>							
+						
+						<option value="Architecture">Architecture</option>							
+						
+						<option value="travel-and-destinations">travel-and-destinations</option>							
+						
+						<option value="sports-and-outdoors">sports-and-outdoors</option>							
+						
+						<option value="diy-and-crafts">diy-and-crafts</option>							
+						
+						<option value="Workspace">Workspace</option>							
+						
+						<option value="cars-and-vehicles">cars-and-vehicles</option>							
+						
+						<option value="Other">Other</option>							
+						
+					</select>
+					</li>
+				</ul>
+				</fieldset>
+			</div>
+			<div id="f-foot">
+				<a class="f-button register" href="#">Done</a> <a href="#" class="l2 cancel_tag">Cancel</a>
+			</div>
+	    </form>
+	    
+	    <div class="need_login" style="display:none;">
+			<a href="javascript:pop_login()" class='require_login'>Sign in to Fancy</a>
+			<div id="list" style="display:none">
+			</div>
+	    </div>
+	</div>
+    </body>
+</html>
