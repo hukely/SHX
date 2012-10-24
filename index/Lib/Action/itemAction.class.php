@@ -119,10 +119,11 @@ class itemAction extends baseAction {
 			}
 			$this->assign('pictureUrl', $upload_list['0']['shortUrl'].$upload_list['0']['savename']);
 			$this->display('addPicture');
+			exit;
 		}
 		$this->display();
 	}
-	public function addPicture() {
+	public function addPicture() {var_dump($_POST);die;
 		$items_mod = D('items');
 		$items_cate_mod = D('items_cate');
 		$items_site_mod = D('items_site');
@@ -152,9 +153,7 @@ class itemAction extends baseAction {
 			}
 
 			if ($_FILES['img']['name'] != '') {
-				$upload_list = $this->_upload($_FILES['img']);
-
-				$data['simg'] = $upload_list['0']['shortUrl'] . '/s_' . $upload_list['0']['savename'];
+				$data['simg'] = $_POST;
 				$data['img'] = $upload_list['0']['shortUrl'] . '/m_' . $upload_list['0']['savename'];
 				$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
 				//$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
@@ -174,21 +173,6 @@ class itemAction extends baseAction {
 				$new_item_id = $items_mod->add($data);
 			}
 			if ($new_item_id) {
-				//相册上传
-				if ($_FILES['pic']['name'][0] != '') {
-					$pic_list = array();
-					$_upload_list = $this->_upload($_FILES['pic']);
-
-					foreach ($_upload_list as $_img) {
-						$pic_list[] = array(
-							'item_id' => $new_item_id,
-							'add_time' => time(),
-							'url' => $upload_list['0']['shortUrl'] . $_img['savename'],
-						);
-					}
-					$items_pics_mod->addAll($pic_list);
-				}
-
 				//处理标签
 				$tags = isset($_POST['tags']) && trim($_POST['tags']) ? trim($_POST['tags']) : '';
 				if ($tags) {
@@ -262,7 +246,7 @@ class itemAction extends baseAction {
         }
         return $uploadList;
     }
-	public function ajaxAddPicture() {
+	public function ajaxAddPicture() {var_dump($_POST);
 		header("Content-Type:text/xml; charset=utf-8");
 		$result = array();
 		$result['status'] =  '<status><status_code>1</status_code><photo_url>http://media.thingd.com/default/215370781603928191_3f1a851be5e2.jpg</photo_url><thing_url>/things/215370781603928191/%E5%9B%BE%E4%B8%BD---%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87</thing_url><thing_id>215370781603928191</thing_id><user_id>3497569</user_id><width>196</width><height>235</height></status>';
