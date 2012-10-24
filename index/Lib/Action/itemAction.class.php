@@ -262,4 +262,10 @@ class itemAction extends baseAction {
         }
         return $uploadList;
     }
+	public function ajaxAddPicture() {
+		header("Content-Type:text/xml; charset=utf-8");
+		$result = array();
+		$result['status'] =  '<status><status_code>1</status_code><photo_url>http://media.thingd.com/default/215370781603928191_3f1a851be5e2.jpg</photo_url><thing_url>/things/215370781603928191/%E5%9B%BE%E4%B8%BD---%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87</thing_url><thing_id>215370781603928191</thing_id><user_id>3497569</user_id><width>196</width><height>235</height></status>';
+        echo(xml_encode($result, 'utf-8'));
+	}
 }

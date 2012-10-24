@@ -360,7 +360,7 @@ function pop_login() {
 }
 
 var fancyConnected = function() {
-	var modal = window.open('/login?close', '_blank', 'height=300,width=900,left=250,top=100,resizable=yes', true);
+	var modal = window.open('/uc/login', '_blank', 'height=300,width=900,left=250,top=100,resizable=yes', true);
 	var wait  = function() {
 		setTimeout(function() {
 			if (modal == null) {

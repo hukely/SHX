@@ -228,7 +228,7 @@ var Tagger = {
 		if (!is_add_thing){
 			is_add_thing = true;
 			var self = this;
-			$.post("/add_new_sys_thing.xml",param, 
+			$.post("/SHX/item/ajaxAddPicture",param, 
 			  function(xml){
 				if ($(xml).find("status_code").length>0 && $(xml).find("status_code").text()==1) {
 					$('form.add_thing').hide();
@@ -367,10 +367,10 @@ var Tagger = {
 						
 						'<div id="f-main">'+
 						'<p style="margin: 0px;"><strong>Added</strong></p><img style="max-width:140px;max-height:140px;" src="'+$(xml).find("photo_url").text()+'"/><br/><label for="f-embedsnip">Copy + paste this code snippet to embed in blogs and web pages</label>'+
-						'<textarea onclick="this.focus(); this.select();" readonly id="codesnippet"><script src="http://www.thefancy.com/photo/embed.js?photoID='+$(xml).find("photo_id").text()+
+						'<textarea onclick="this.focus(); this.select();" readonly id="codesnippet"><script src="http://www.shx.com/photo/embed.js?photoID='+$(xml).find("photo_id").text()+
 						'&url='+$(xml).find("photo_url").text()+'"></script></textarea>'+
 						'<label for="f-embedsnip">Link to the tagged image on Fancy</label>'+
-						'<textarea onclick="this.focus(); this.select();" readonly id="codesnippet">http://www.thefancy.com/photo/'+$(xml).find("photo_id").text()+'</textarea>'+
+						'<textarea onclick="this.focus(); this.select();" readonly id="codesnippet">http://www.shx.com/photo/'+$(xml).find("photo_id").text()+'</textarea>'+
 						'</div>'+
 					
 						'<div id="f-foot">'+
