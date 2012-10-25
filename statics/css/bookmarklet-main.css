@@ -804,6 +804,12 @@ input#linksnippet {height:35px;}
 	font-family: 'Helvetica Neue', Arial, sans-serif;
 	font-size: 13px;
 }
+#f-main #pcid {
+	width:224px;
+	border:1px #ddd solid;
+	height:25px;
+	line-height:25px;
+}
 
 /*button*/
 

@@ -114,21 +114,12 @@
 				</div>
 				<input type="text" id="f-whatisit" name="title" class="f-field">
 				<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-thing" maxlength="200">
-		
-				<div>
-					<select onchange="get_child_cates(this,'scid');" name="pcid" id="pcid">
-						<option value="0">--请选择--</option>
+				<select size="1" name="pcid" id="pcid">
+					<option value="0">--请选择--</option>
 						<volist name="first_cates_list" id="val">
 						<option value="{$val.id}">{$val.name}</option>
 						</volist>
-					</select>
-					<select onchange="get_child_cates(this,'cid');"  name="scid" id="scid">
-						<option value="">--请选择--</option>
-					</select>
-					<select  name="cid" id="cid">
-						<option value="">--请选择--</option>
-					</select>
-				</div>
+				</select>
 			</div>
 	
 			<div id="f-foot">
@@ -159,21 +150,13 @@
 					<label></label>
 					</li>
 					<li style="display:none;" class="second-tab">
-					<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-photo" maxlength="200">
-					<div>
-						<select onchange="get_child_cates(this,'scid');" name="pcid" id="pcid">
-							<option value="">--请选择--</option>
-							<volist name="first_cates_list" id="val">
-							<option value="{$val.id}">{$val.name}</option>
-							</volist>
+						<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-photo" maxlength="200">
+						<select size="1" name="pcid" id="pcid">
+								<option value="0">--请选择--</option>
+								<volist name="first_cates_list" id="val">
+								<option value="{$val.id}">{$val.name}</option>
+								</volist>
 						</select>
-						<select onchange="get_child_cates(this,'cid');"  name="scid" id="scid">
-							<option value="">--请选择--</option>
-						</select>
-						<select  name="cid" id="cid">
-							<option value="">--请选择--</option>
-						</select>
-					</div>
 					</li>
 				</ul>
 				</fieldset>

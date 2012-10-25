@@ -31,22 +31,12 @@
 							<li>
 							<label for="fancy-category">分类 <em>它应该属于哪一类呢?</em></label>
 								<br class="hidden">
-								<div>
-									<select onchange="get_child_cates(this,'scid');" name="pcid" id="pcid">
-										<option value="0">--请选择--</option>
+								<select size="1" name="pcid" id="pcid">
+									<option value="0">--请选择--</option>
 										<volist name="first_cates_list" id="val">
 										<option value="{$val.id}">{$val.name}</option>
 										</volist>
-									</select>
-									&nbsp;-&nbsp;
-									<select onchange="get_child_cates(this,'cid');"  name="scid" id="scid">
-										<option value="">--请选择--</option>
-									</select>
-									&nbsp;-&nbsp;
-									<select  name="cid" id="cid">
-										<option value="">--请选择--</option>
-									</select>
-								</div>
+								</select>
 							</li>
 							<li id="add-to-list-2">
 							<label for="fancy-">添加到列表 <em>添加至列表?</em></label>
