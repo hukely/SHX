@@ -117,101 +117,64 @@ class itemAction extends baseAction {
 			if ($_FILES['img']['name'] != '') {
 				$upload_list = $this->_upload($_FILES['img']);
 			}
+			$items_cate_mod = D('items_cate');
+			$item_cate_first_list = $items_cate_mod->field('id,name')->where(array('pid' => 0))->order('ordid DESC')->select();
+			$this->assign('first_cates_list', $item_cate_first_list);
 			$this->assign('pictureUrl', $upload_list['0']['shortUrl'].$upload_list['0']['savename']);
 			$this->display('addPicture');
 			exit;
 		}
 		$this->display();
 	}
-	public function addPicture() {var_dump($_POST);die;
+	public function addPicture() {
 		$items_mod = D('items');
-		$items_cate_mod = D('items_cate');
 		$items_site_mod = D('items_site');
-		$items_tags_mod = D('items_tags');
-		$items_pics_mod = D('items_pics');
-		$items_tags_item_mod = D('items_tags_item');
-		if (isset($_POST['dosubmit'])) {
-			if ($_POST['title'] == '') {
-				$this->error('请填写商品标题');
-			}
-			if (false === $data = $items_mod->create()) {
-				$this->error($items_mod->error());
-			}
-			$data['add_time'] = time();
-			$data['last_time'] = time();
-			if (($_POST['cid'] != "")&&($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
-				$data['cid']    = $_POST['cid'];
-				$data['level']  = "3";
-			} elseif (($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
-				$data['cid'] = $_POST['scid'];
-				$data['level'] = "2";               
-			}elseif ($_POST['pcid'] != "") {
-				$data['cid'] = $_POST['pcid'];
-				$data['level'] = "1";
-			}elseif ($_POST['pcid'] == "") {
-				$this->error('请选择分类');
-			}
-
-			if ($_FILES['img']['name'] != '') {
-				$data['simg'] = $_POST;
-				$data['img'] = $upload_list['0']['shortUrl'] . '/m_' . $upload_list['0']['savename'];
-				$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
-				//$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
-			} else {
-				$this->error('商品图片不能为空');
-			}
-
-			$data['item_key'] = 'handel_' . time();
-			//来源
-			$author = 'handel';
-			$data['sid'] = $items_site_mod->where("alias='" . $author . "'")->getField('id');
-			$item_id = $items_mod->where("item_key='" . $data['item_key'] . "'")->getField('id');
-			if ($item_id) {
-				$items_mod->where('id=' . $item_id)->save($data);
-				$this->success(L('operation_success'));
-			} else {
-				$new_item_id = $items_mod->add($data);
-			}
-			if ($new_item_id) {
-				//处理标签
-				$tags = isset($_POST['tags']) && trim($_POST['tags']) ? trim($_POST['tags']) : '';
-				if ($tags) {
-					$tags_arr = explode(' ', $tags);
-					$tags_arr = array_unique($tags_arr);
-					foreach ($tags_arr as $tag) {
-						$isset_id = $items_tags_mod->where("name='" . $tag . "'")->getField('id');
-						if ($isset_id) {
-							$items_tags_mod->where('id=' . $isset_id)->setInc('item_nums');
-							$items_tags_item_mod->add(array(
-								'item_id' => $new_item_id,
-								'tag_id' => $isset_id
-							));
-						} else {
-							$tag_id = $items_tags_mod->add(array(
-								'name' => $tag
-									));
-							$items_tags_item_mod->add(array(
-								'item_id' => $new_item_id,
-								'tag_id' => $tag_id
-							));
-						}
-					}
-				}
-				$items_cate_mod->setInc('item_nums', 1);
-				$this->success(L('operation_success'));
-			} else {
-				$this->error(L('operation_failure'));
-			}
+		if ($_POST['title'] == '') {
+			$this->error('请填写商品标题');
+		}
+		if (false === $data = $items_mod->create()) {
+			$this->error($items_mod->error());
+		}
+		$data['add_time'] = time();
+		$data['last_time'] = time();
+		if (($_POST['cid'] != "")&&($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
+			$data['cid']    = $_POST['cid'];
+			$data['level']  = "3";
+		} elseif (($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
+			$data['cid'] = $_POST['scid'];
+			$data['level'] = "2";               
+		}elseif ($_POST['pcid'] != "") {
+			$data['cid'] = $_POST['pcid'];
+			$data['level'] = "1";
+		}elseif ($_POST['pcid'] == "") {
+			$this->error('请选择分类');
 		}
 
-		$site_list = $items_site_mod->field('id,name,alias')->select();
+		if ($_POST['img'] != '') {
+			$data['img'] = dirname($_POST['img']).'/m_'.basename($_POST['img']);
+			$data['simg'] = dirname($_POST['img']).'/s_'.basename($_POST['img']);
+			$data['bimg'] = dirname($_POST['img']).'/b_'.basename($_POST['img']);
+		} else {
+			$this->error('您还没分享图片呢!');
+		}
 
-		//商品分类最上级分类
-		$first_cates_list = $items_cate_mod->field('id,name')->where(array('pid' => 0 ))->order('ordid DESC')->select();
-		$this->assign('first_cates_list', $first_cates_list);
-
-		$this->assign('site_list', $site_list);
-		$this->display();
+		$data['item_key'] = 'handel_' . time();
+		//来源
+		$author = 'handel';
+		$data['sid'] = $items_site_mod->where("alias='" . $author . "'")->getField('id');
+		$item_id = $items_mod->where("item_key='" . $data['item_key'] . "'")->getField('id');
+		if ($item_id) {
+			$items_mod->where('id=' . $item_id)->save($data);
+			$this->success(L('operation_success'));
+		} else {
+			$new_item_id = $items_mod->add($data);
+		}
+		if($new_item_id){
+			echo("<script> top.location.href='" .__ROOT__.'/item/index/id/'.$new_item_id . "'</script>");
+			exit;
+		}else{
+			$this->error('图片上传失败!');
+		}
 	}
 	private function _upload($imgage, $path = '', $isThumb = true) {
         import("ORG.Net.UploadFile");
@@ -230,7 +193,7 @@ class itemAction extends baseAction {
             $upload->thumb = true;
             $upload->imageClassPath = 'ORG.Util.Image';
             $upload->thumbPrefix = 'b_,m_,s_';
-            $upload->thumbMaxWidth = '450,210,64';
+            $upload->thumbMaxWidth = '1000,210,64';
             //设置缩略图最大高度
             $upload->thumbMaxHeight = '5000,3000,1000';
             $upload->saveRule = uniqid;
@@ -246,10 +209,78 @@ class itemAction extends baseAction {
         }
         return $uploadList;
     }
-	public function ajaxAddPicture() {var_dump($_POST);
-		header("Content-Type:text/xml; charset=utf-8");
-		$result = array();
-		$result['status'] =  '<status><status_code>1</status_code><photo_url>http://media.thingd.com/default/215370781603928191_3f1a851be5e2.jpg</photo_url><thing_url>/things/215370781603928191/%E5%9B%BE%E4%B8%BD---%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87</thing_url><thing_id>215370781603928191</thing_id><user_id>3497569</user_id><width>196</width><height>235</height></status>';
-        echo(xml_encode($result, 'utf-8'));
+	public function tagger() {
+		$items_cate_mod = D('items_cate');
+		$item_cate_first_list = $items_cate_mod->field('id,name')->where(array('pid' => 0))->order('ordid DESC')->select();
+		$this->assign('first_cates_list', $item_cate_first_list);
+		$this->assign('pictureUrl', $upload_list['0']['shortUrl'].$upload_list['0']['savename']);
+		$this->display();
+		exit();
+	}
+	public function ajaxAddPicture() {
+		C('DEFAULT_AJAX_RETURN', 'XML');
+		$items_mod = D('items');
+		if (false === $data = $items_mod->create()) {
+			$this->ajaxReturn($result, '数据调用失败!', 0);
+			exit;
+		}
+		$data['add_time'] = time();
+		$data['last_time'] = time();
+		if (($_POST['cid'] != "")&&($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
+			$data['cid']    = $_POST['cid'];
+			$data['level']  = "3";
+		} elseif (($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
+			$data['cid'] = $_POST['scid'];
+			$data['level'] = "2";               
+		}elseif ($_POST['pcid'] != "") {
+			$data['cid'] = $_POST['pcid'];
+			$data['level'] = "1";
+		}elseif ($_POST['pcid'] == "") {
+			$data['cid'] = $_POST['pcid'];
+			$data['level'] = "0";
+		}
+		import("ORG.Net.Http");
+		$getHttp = new Http();
+		$img = ROOT_PATH. '/data/items/' . date('Y') . '/' . date("md") . "/".time().'_'.basename($_POST['photo_url']);
+		$getHttp->curlDownload($_POST['photo_url'], $img);
+		$imgArray = getimagesize($img);
+		$uploadImg = array(
+			'name'=>basename($img),
+			'type'=>$imgArray['mime'],
+			'tmp_name'=>$img,
+			'error'=>0,
+			'size'=>$imgArray['bits']
+		);
+		 if (file_exists($img)) {
+			$upload_list = $this->_upload($uploadImg);
+			//array(5) { ["name"]=> string(8) "dfds.jpg" ["type"]=> string(10) "image/jpeg" ["tmp_name"]=> string(27) "C:\Windows\Temp\php23A3.tmp" ["error"]=> int(0) ["size"]=> int(48093) } 
+			$data['simg'] = $upload_list['0']['shortUrl'] . '/s_' . $upload_list['0']['savename'];
+			$data['img'] = $upload_list['0']['shortUrl'] . '/m_' . $upload_list['0']['savename'];
+			$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
+			//$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
+		} else {
+			$this->ajaxReturn($result, '图片读取失败!', 0);
+			exit;
+		}
+		//来源
+		$author = 'handel';
+		$new_item_id = $items_mod->add($data);
+		$result['status'] = array(
+			'status_code'=>1,
+			'photo_url'=>__ROOT__.$data['img'],
+			'thing_url'=>__ROOT__.'/item/index/id/'.$new_item_id,
+			'thing_id'=>$new_item_id,
+			'user_id'=>$_SESSION['user_id'],
+			'width'=>196,
+			'height'=>235
+		);  
+		if($new_item_id){
+			$this->ajaxReturn($result, '添加成功!', 1);
+			exit;
+		}else{
+			$result['status']['status_code'] = 0;
+			$this->ajaxReturn($result, '抱歉,图片添加失败!', 0);
+			exit;
+		}
 	}
 }

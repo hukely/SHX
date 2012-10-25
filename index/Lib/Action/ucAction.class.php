@@ -801,7 +801,7 @@ class ucAction extends baseAction {
         }
 
         if ($this->check_login())
-            header('Location:' . U('index/index'));
+            header('Location:' . __URL__);
 
         if (isset($_POST['dosubmit'])) {
             $user = $this->user_mod->where("(name='" . trim($_POST['name']) . "' or email='" . trim($_POST['name']) . "') and passwd='" . md5(trim($_POST['passwd'])) . "' and status='1'")->find();

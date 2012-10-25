@@ -1292,10 +1292,6 @@ span.tag_title {
 }
 .container  .add-2 form select {
     font-size: 15px;
-    height: 40px;
-    line-height: 40px;
-    width: 420px;
-	border:0;
 }
 .container  button {
     cursor: pointer;

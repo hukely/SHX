@@ -6,7 +6,7 @@
 
 				<form method="post" action="__ROOT__/item/addPicture">
 					<fieldset class="pic_preview">
-						<img style="max-height:200px;max-width:200px;" src="__ROOT__{$pictureUrl}">
+						<img style="max-height:500px;max-width:200px;" src="__ROOT__{$pictureUrl}">
 					</fieldset>
 					<!-- / pic_preview -->
 					<fieldset class="add-form">
@@ -15,59 +15,38 @@
 							<label for="fancy-title">标题 <em>您照片里的物品是?</em></label>
 								<br class="hidden">
 
-								<input type="text" class="text" name="fancy-title" id="fancy-title">
-								<input type="hidden" name="imageUrl" value="{$pictureUrl}">
+								<input type="text" class="text" name="title" id="fancy-title">
+								<input type="hidden" name="img" value="{$pictureUrl}">
 							</li>
 							<li class="hastext">
 							<label for="fancy-web-link">网页链接 <em>在哪儿可以买到或找到更多细节?</em></label>
 								<br class="hidden">
-								<input type="text" class="text" name="fancy-web-link" id="fancy-web-link">
+								<input type="text" class="text" name="url" id="fancy-web-link">
 							</li>
 							<li>
 								<label for="fancy-comment">评论 <em>分享您的想法!</em></label>
 								<br class="hidden">
-								<textarea class="text" rows="5" cols="30" name="fancy-comment" id="fancy-comment"></textarea>
+								<textarea class="text" rows="5" cols="30" name="comments" id="fancy-comment"></textarea>
 							</li>
 							<li>
 							<label for="fancy-category">分类 <em>它应该属于哪一类呢?</em></label>
 								<br class="hidden">
-								<select name="fancy-category" id="fancy-category">
-									<option value="-1">放入分类...</option>
-									<option value="-2">------------------</option>
-									
-									<option value="Mens">男士</option>
-									
-									<option value="Womens">女士</option>
-									
-									<option value="Kids">儿童</option>
-									
-									<option value="Pets">宠物</option>
-									
-									<option value="Home">首页</option>
-									
-									<option value="Gadgets">小玩意</option>
-									
-									<option value="Art">艺术</option>
-									
-									<option value="Food">食品</option>
-									
-									<option value="Media">媒体</option>
-									
-									<option value="Architecture">建筑</option>
-									
-									<option value="travel-and-destinations">旅行 &amp; 目的地</option>
-									
-									<option value="sports-and-outdoors">运动 &amp; 户外</option>
-									
-									<option value="diy-and-crafts">DIY &amp; 工艺</option>
-									
-									<option value="Workspace">工作空间</option>
-									
-									<option value="cars-and-vehicles">汽车 &amp; 交通工具</option>
-									
-									<option value="Other">其他</option>
-									
-								</select>
+								<div>
+									<select onchange="get_child_cates(this,'scid');" name="pcid" id="pcid">
+										<option value="0">--请选择--</option>
+										<volist name="first_cates_list" id="val">
+										<option value="{$val.id}">{$val.name}</option>
+										</volist>
+									</select>
+									&nbsp;-&nbsp;
+									<select onchange="get_child_cates(this,'cid');"  name="scid" id="scid">
+										<option value="">--请选择--</option>
+									</select>
+									&nbsp;-&nbsp;
+									<select  name="cid" id="cid">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
 							</li>
 							<li id="add-to-list-2">
 							<label for="fancy-">添加到列表 <em>添加至列表?</em></label>
@@ -99,5 +78,17 @@ $(function() {
 		$('form').submit();
 	});
 });
+function get_child_cates(obj,to_id){
+	var parent_id = $(obj).val();
+	if(to_id == 'sid') {
+		$('#cid').html( '<option value=\"\">--请选择--</option>');
+	}
+	if( parent_id ){
+		$.get('?m=uc&a=get_child_cates&parent_id='+parent_id,function(data){
+				var obj = eval("("+data+")");
+				$('#'+to_id).html( obj.content );
+	    });
+    }
+}
 </script>
 <include file="public:footer"/>

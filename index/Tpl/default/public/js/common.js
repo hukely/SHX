@@ -812,8 +812,7 @@ function base64_decode(input) {
     } while (i < input.length);
     return output;
 }
-function get_child_cates(obj,to_id)
-{
+function get_child_cates(obj,to_id){
 	var parent_id = $(obj).val();
 	if(to_id == 'sid') {
 		$('#cid').html( '<option value=\"\">--请选择--</option>');

@@ -67,6 +67,18 @@
 				xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
 		}
 	});
+	function get_child_cates(obj,to_id){
+	var parent_id = $(obj).val();
+	if(to_id == 'sid') {
+		$('#cid').html( '<option value=\"\">--请选择--</option>');
+	}
+	if( parent_id ){
+		$.get('?m=uc&a=get_child_cates&parent_id='+parent_id,function(data){
+				var obj = eval("("+data+")");
+				$('#'+to_id).html( obj.content );
+	    });
+    }
+}
 	</script>
 
     </head>
@@ -100,46 +112,23 @@
 				<div id="f-imgpick">
 					<a class="img-pick" did="0" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-left.png"></a><a class="img-pick" did="1" href="#"><img src="http://s3.amazonaws.com/thefancy/_ui/bookmarklet/f-right.png"></a>
 				</div>
-				<input type="text" id="f-whatisit" name="f-whatisit" class="f-field">
+				<input type="text" id="f-whatisit" name="title" class="f-field">
 				<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-thing" maxlength="200">
 		
-				<select name="f-category" id="f-category-for-thing" size="1">
-					<option value="-1">Put in category...</option>
-					<option value="-2">-----</option>
-					
-					<option value="Mens">Men&#39;s</option>							
-					
-					<option value="Womens">Women&#39;s</option>							
-					
-					<option value="Kids">Kids</option>							
-					
-					<option value="Pets">Pets</option>							
-					
-					<option value="Home">Home</option>							
-					
-					<option value="Gadgets">Gadgets</option>							
-					
-					<option value="Art">Art</option>							
-					
-					<option value="Food">Food</option>							
-					
-					<option value="Media">Media</option>							
-					
-					<option value="Architecture">Architecture</option>							
-					
-					<option value="travel-and-destinations">Travel &amp; Destinations</option>							
-					
-					<option value="sports-and-outdoors">Sports &amp; Outdoors</option>							
-					
-					<option value="diy-and-crafts">DIY &amp; Crafts</option>							
-					
-					<option value="Workspace">Workspace</option>							
-					
-					<option value="cars-and-vehicles">Cars &amp; Vehicles</option>							
-					
-					<option value="Other">Other</option>							
-					
-				</select>
+				<div>
+					<select onchange="get_child_cates(this,'scid');" name="pcid" id="pcid">
+						<option value="0">--请选择--</option>
+						<volist name="first_cates_list" id="val">
+						<option value="{$val.id}">{$val.name}</option>
+						</volist>
+					</select>
+					<select onchange="get_child_cates(this,'cid');"  name="scid" id="scid">
+						<option value="">--请选择--</option>
+					</select>
+					<select  name="cid" id="cid">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
 			</div>
 	
 			<div id="f-foot">
@@ -171,43 +160,20 @@
 					</li>
 					<li style="display:none;" class="second-tab">
 					<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-photo" maxlength="200">
-					<select name="f-category" id="f-category-for-photo" size="1">
-						<option value="-1">Put in category...</option>
-						<option value="-2">-----</option>
-						
-						<option value="Mens">Mens</option>							
-						
-						<option value="Womens">Womens</option>							
-						
-						<option value="Kids">Kids</option>							
-						
-						<option value="Pets">Pets</option>							
-						
-						<option value="Home">Home</option>							
-						
-						<option value="Gadgets">Gadgets</option>							
-						
-						<option value="Art">Art</option>							
-						
-						<option value="Food">Food</option>							
-						
-						<option value="Media">Media</option>							
-						
-						<option value="Architecture">Architecture</option>							
-						
-						<option value="travel-and-destinations">travel-and-destinations</option>							
-						
-						<option value="sports-and-outdoors">sports-and-outdoors</option>							
-						
-						<option value="diy-and-crafts">diy-and-crafts</option>							
-						
-						<option value="Workspace">Workspace</option>							
-						
-						<option value="cars-and-vehicles">cars-and-vehicles</option>							
-						
-						<option value="Other">Other</option>							
-						
-					</select>
+					<div>
+						<select onchange="get_child_cates(this,'scid');" name="pcid" id="pcid">
+							<option value="">--请选择--</option>
+							<volist name="first_cates_list" id="val">
+							<option value="{$val.id}">{$val.name}</option>
+							</volist>
+						</select>
+						<select onchange="get_child_cates(this,'cid');"  name="scid" id="scid">
+							<option value="">--请选择--</option>
+						</select>
+						<select  name="cid" id="cid">
+							<option value="">--请选择--</option>
+						</select>
+					</div>
 					</li>
 				</ul>
 				</fieldset>
