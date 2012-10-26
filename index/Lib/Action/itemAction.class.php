@@ -182,7 +182,7 @@ class itemAction extends baseAction {
         //设置上传文件大小
         $upload->maxSize = 3292200;
         $upload->allowExts = explode(',', 'jpg,gif,png,jpeg');
-
+		
         if (empty($path)) {
 			$shortUrl = '/data/items/' . date('Y') . '/' . date("md") . "/";
             $upload->savePath = ROOT_PATH.$shortUrl;
@@ -220,28 +220,57 @@ class itemAction extends baseAction {
 	public function ajaxAddPicture() {
 		C('DEFAULT_AJAX_RETURN', 'XML');
 		$items_mod = D('items');
+		if(empty($_POST['user_key'])){
+			$this->ajaxReturn(array('message'=>'用户账号有误,重试若无法生效,请重新安装插件!'), '', 0);
+		}
 		if (false === $data = $items_mod->create()) {
-			$this->ajaxReturn($result, '数据调用失败!', 0);
+			$result['status']['status_code'] = 0;
+			$result['status']['message'] = '数据调用失败!';
+			$this->ajaxReturn(array('message'=>'抱歉,数据调用失败!'), '', 0);
 			exit;
 		}
+		$data['img'] = $_POST['photo_url'];
+		$data['bimg'] = $_POST['photo_url'];
+		$data['simg'] = $_POST['photo_url'];
 		$data['add_time'] = time();
+		$data['uid'] = $_POST['user_key'];
 		$data['last_time'] = time();
-		if (($_POST['cid'] != "")&&($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
-			$data['cid']    = $_POST['cid'];
-			$data['level']  = "3";
-		} elseif (($_POST['scid'] != "")&&($_POST['pcid'] != "")) {
-			$data['cid'] = $_POST['scid'];
-			$data['level'] = "2";               
-		}elseif ($_POST['pcid'] != "") {
-			$data['cid'] = $_POST['pcid'];
+		if($_POST['category'] != "") {
+			$data['cid'] = $_POST['category'];
 			$data['level'] = "1";
-		}elseif ($_POST['pcid'] == "") {
-			$data['cid'] = $_POST['pcid'];
+		}elseif ($_POST['category'] == "") {
+			$data['cid'] = $_POST['category'];
 			$data['level'] = "0";
 		}
+		$data['status'] = 0;
+		$data['title'] = $_POST['name'];
+		//来源
+		$author = 'handel';
+		$new_item_id = $items_mod->add($data);
+		if(!empty($_POST['note'])) {
+			$user_comments = D('user_comments');
+			$comment = array('info'=>$_POST['note'], 'uid'=>$data['uid'], 'pid'=>$new_item_id, 'add_time'=>time(), 'type'=>'item', 'orig'=>'index');
+			$new_comments_id = $user_comments->add($comment);
+		}
+		$result['status'] = array(
+			'status_code'=>1
+		);  
+		if($new_item_id){
+			$this->ajaxReturn('', '添加成功!', 1);
+			exit;
+		}else{
+			$this->ajaxReturn(array('message'=>'抱歉,图片未能抓取成功!'), '', 0);
+		}
+		
+	}
+	private function catchPictrue() {
 		import("ORG.Net.Http");
 		$getHttp = new Http();
-		$img = ROOT_PATH. '/data/items/' . date('Y') . '/' . date("md") . "/".time().'_'.basename($_POST['photo_url']);
+		$img = ROOT_PATH. '/data/items/' . date('Y') . '/' . date("md");
+		if(!file_exists($img)) {
+			mkdir($img);
+		}
+		$img .= "/".time().'_'.basename($_POST['photo_url']);
 		$getHttp->curlDownload($_POST['photo_url'], $img);
 		$imgArray = getimagesize($img);
 		$uploadImg = array(
@@ -253,33 +282,12 @@ class itemAction extends baseAction {
 		);
 		 if (file_exists($img)) {
 			$upload_list = $this->_upload($uploadImg);
-			//array(5) { ["name"]=> string(8) "dfds.jpg" ["type"]=> string(10) "image/jpeg" ["tmp_name"]=> string(27) "C:\Windows\Temp\php23A3.tmp" ["error"]=> int(0) ["size"]=> int(48093) } 
 			$data['simg'] = $upload_list['0']['shortUrl'] . '/s_' . $upload_list['0']['savename'];
 			$data['img'] = $upload_list['0']['shortUrl'] . '/m_' . $upload_list['0']['savename'];
 			$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
 			//$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
 		} else {
 			$this->ajaxReturn($result, '图片读取失败!', 0);
-			exit;
-		}
-		//来源
-		$author = 'handel';
-		$new_item_id = $items_mod->add($data);
-		$result['status'] = array(
-			'status_code'=>1,
-			'photo_url'=>__ROOT__.$data['img'],
-			'thing_url'=>__ROOT__.'/item/index/id/'.$new_item_id,
-			'thing_id'=>$new_item_id,
-			'user_id'=>$_SESSION['user_id'],
-			'width'=>196,
-			'height'=>235
-		);  
-		if($new_item_id){
-			$this->ajaxReturn($result, '添加成功!', 1);
-			exit;
-		}else{
-			$result['status']['status_code'] = 0;
-			$this->ajaxReturn($result, '抱歉,图片添加失败!', 0);
 			exit;
 		}
 	}

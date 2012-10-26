@@ -230,7 +230,7 @@ var Tagger = {
 			var self = this;
 			$.post("/SHX/item/ajaxAddPicture",param, 
 			  function(xml){
-				if ($(xml).find("status_code").length>0 && $(xml).find("status_code").text()==1) {
+				if ($(xml).find("status").length>0 && $(xml).find("status").text()==1) {
 					$('form.add_thing').hide();
 					//$('#main form').before('<p class="success-tip">Image added - thanks! We\'ll check it out and then put it on the front page.</p>')
 					$('#main form.add_thing').before('<div id="added_thing">'+
@@ -265,14 +265,12 @@ var Tagger = {
 					},800);
 					
 					
-				}
-				else if ($(xml).find("status_code").length>0 && $(xml).find("status_code").text()==0) {
+				}else if ($(xml).find("status").length>0 && $(xml).find("status").text()==0) {
 				  var message = $(xml).find("message").text();
-				  if (message == 'Fancying not allowed from this site.'){
+				  if (message == '抱歉,这个网站的图片未能抓取成功!'){
 					Tagger.handleCancel();
 					$('a.close_box').click();
-				  }
-				  else{
+				  }else{
 					alert(message);
 				  }
 				}

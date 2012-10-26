@@ -1,7 +1,7 @@
 <html>
     <head>
 	<title>
-	Fancy - Tagger
+			生活秀 - 爱生活
 	</title>
 	
 	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-main.css?v=011" />
@@ -15,15 +15,17 @@
 	<!--[if lte IE 6]>
 	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie6.css?v=005" />
 	<![endif]-->
-
-	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.core.js" language="javascript"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.widget.js" language="javascript"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.mouse.js" language="javascript"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.ui.draggable.js" language="javascript"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.countdown.min.js" language="javascript"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/bookmarklet-tagger.js?v=0051" language="javascript"></script>
-	<script type="text/javascript" src="__ROOT__/statics/js/_bookmarklet_helper.js?v=0051" language="javascript"></script>
+<script type="text/javascript">
+var shx={$shx};
+</script>
+	<script type="text/javascript" src="__APP__/statics/js/jquery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.ui.core.js" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.ui.widget.js" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.ui.mouse.js" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.ui.draggable.js" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.countdown.min.js" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/bookmarklet-tagger.js?v=0051" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/_bookmarklet_helper.js?v=0051" language="javascript"></script>
 
 	<script type="text/javascript">
 	$(document).ajaxSend(function(event, xhr, settings) {
@@ -114,7 +116,7 @@
 				</div>
 				<input type="text" id="f-whatisit" name="title" class="f-field">
 				<input type="text" name="f-note" placeholder="Optional: add a short note?" class="f-field f-ghost" id="f-note-for-thing" maxlength="200">
-				<select size="1" name="pcid" id="pcid">
+				<select size="1" name="pcid" id="f-category-for-thing">
 					<option value="0">--请选择--</option>
 						<volist name="first_cates_list" id="val">
 						<option value="{$val.id}">{$val.name}</option>
