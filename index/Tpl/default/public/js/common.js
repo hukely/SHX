@@ -824,3 +824,52 @@ function get_child_cates(obj,to_id){
 	    });
     }
 }
+(function(a) {
+    a.fn.extend({
+        dropDown: function(b) {
+            var c = {
+                event: "mouseover",
+                classNm: ".dropdown",
+                timer: null,
+                fadeSpeed: 100,
+                duration: 500,
+                offsetX: 82,
+                offsetY: 8,
+                isLocation: !1
+            };
+            b && a.extend(c, b);
+            var d = a(c.classNm);
+            this.each(function() {
+                $this = a(this);
+                $this.hover(function() {
+                    clearTimeout(c.timer);
+                    a(".dropdown:not(" + c.classNm + ")").hide();
+                    if (c.isLocation) {
+                        var b = a.guang.util.getPosition(a(this)).rightBottom();
+                        d.css({
+                            left: b.x - c.offsetX + "px",
+                            top: b.y + c.offsetY + "px"
+                        })
+                    }
+                    d.fadeIn(c.fadeSpeed)
+                },
+                function() {
+                    c.timer = setTimeout(function() {
+                        d.fadeOut(c.fadeSpeed)
+                    },
+                    c.duration)
+                });
+                d.hover(function() {
+                    clearTimeout(c.timer);
+                    d.show()
+                },
+                function() {
+                    c.timer = setTimeout(function() {
+                        d.fadeOut(c.fadeSpeed)
+                    },
+                    c.duration)
+                })
+            })
+        }
+    })
+})(jQuery);

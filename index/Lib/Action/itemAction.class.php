@@ -287,7 +287,7 @@ class itemAction extends baseAction {
 			$data['bimg'] = $upload_list['0']['shortUrl'] . '/b_' . $upload_list['0']['savename'];
 			//$data['img'] = $data['simg'] = $data['bimg'] = $this->site_root . 'data/items/m_' . $upload_list['0']['savename'];
 		} else {
-			$this->ajaxReturn($result, '图片读取失败!', 0);
+			$this->ajaxReturn('', '图片读取失败!', 0);
 			exit;
 		}
 	}

@@ -92,14 +92,15 @@ $(function(){
 			<a title="搜索" class="header-nav-search fr"></a>
 			<a rel="signIn" href="javascript:;" class="btn-signIn fr">签到</a>
 			
-			<present name="user">
+			
 			<div class="shareIt fr">
 				<div id="share_goods" class="left top_share"><div class="button">分享好东西</div><span class="arrow-dn"></span></div>
 				<ul class="dropdown shareit-dropdown">
-					<li class="sg-li"><a class="hd-share-goods" href="{:u('item/sharePic')}" rel="shareGoods">本地上传</a></li>
-					<li><a class="hd-create-topic" rel="nofollow" href="/u/topic/create"></a>分享插件</li>
+					<li class="sg-li"><a class="hd-share-goods" href="{:u('item/sharePicture')}" rel="shareGoods">本地上传</a></li>
+					<li><a class="hd-create-topic" rel="nofollow" href="{:u('item/sharePicture')}"></a>分享插件</li>
 				</ul> 
 			</div>
+			<present name="user">
 			<div class="regLogin fr">
 				<a href="{:u('uc/index')}">{$u.name}</a><span class="vline5">|</span>
 				<a href="{:u('uc/account_basic')}">设置</a><span class="vline5">|</span>
@@ -146,22 +147,23 @@ $(function() {
 			$(".m-nav").addClass("fixed");
 			$(".header-nav-search").show();
 		}
-		if($(window).scrollTop()<84){
+		if($(window).scrollTop()<=84){
 			$(".m-nav").removeClass("fixed");
 			$(".header-nav-search").hide();
 		}
 	});
+	$(".regLogin").dropDown({
+        classNm: ".login-dropdown"
+    });
+    $("#share_goods").dropDown({
+        classNm: ".shareit-dropdown"
+    });
 });
 $(".header-nav-search").bind("click",function(){
 	$(".search-input-keyword").val("");
 	$(document).scrollTop(0);
 	$(".search-input-keyword").focus();
 }); 
-$(".regLogin").mouseover(function() {
-	$('.login-dropdown').show();
-});
-$(".regLogin").mouseleave(function() {
-	$('.login-dropdown').hide();
-});
+
 </script>
 <div class="wrapper clearfix">
