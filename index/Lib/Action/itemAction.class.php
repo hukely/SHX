@@ -113,6 +113,11 @@ class itemAction extends baseAction {
         echo $data;
     }
 	public function sharePicture() {
+		if(!isset($_SESSION['user_id'])) {
+			$this->redirect('uc/login');
+		}
+		$shareUrl = 'javascript:(function(){theindex_username="'.$_SESSION['user_id'].'";var script_id = "theindex_tagger_bookmarklet_helper_js";var s = document.getElementById(script_id);var can_continue = true;if (s) {var t = window;try {if (t.theindex_bookmarklet) {t.theindex_bookmarklet.tagger.clean_listeners();s.parentNode.removeChild(s);} else {can_continue = false;}} catch (e5) {can_continue = false;}};if (can_continue) {_my_script = document.createElement("SCRIPT");_my_script.type = "text/javascript";_my_script.id = script_id;_my_script.src = "'.$this->site_root.'statics/js/shx_tagger.js?x=" + (Math.random());document.getElementsByTagName("head")[0].appendChild(_my_script);}})();';
+		$shareUrl = str_replace('"', '&quot;', $shareUrl);
 		if(isset($_POST['submitPicture'])) {
 			if ($_FILES['img']['name'] != '') {
 				$upload_list = $this->_upload($_FILES['img']);
@@ -124,6 +129,7 @@ class itemAction extends baseAction {
 			$this->display('addPicture');
 			exit;
 		}
+		$this->assign('shareUrl', $shareUrl);
 		$this->display();
 	}
 	public function addPicture() {
@@ -214,18 +220,18 @@ class itemAction extends baseAction {
 		$item_cate_first_list = $items_cate_mod->field('id,name')->where(array('pid' => 0))->order('ordid DESC')->select();
 		$this->assign('first_cates_list', $item_cate_first_list);
 		$this->assign('pictureUrl', $upload_list['0']['shortUrl'].$upload_list['0']['savename']);
+		$this->assign('shx', $this->site_root);
 		$this->display();
 		exit();
 	}
 	public function ajaxAddPicture() {
 		C('DEFAULT_AJAX_RETURN', 'XML');
 		$items_mod = D('items');
-		if(empty($_POST['user_key'])){
+		if(!empty($_POST['user_key'])){
 			$this->ajaxReturn(array('message'=>'用户账号有误,重试若无法生效,请重新安装插件!'), '', 0);
+			exit;
 		}
 		if (false === $data = $items_mod->create()) {
-			$result['status']['status_code'] = 0;
-			$result['status']['message'] = '数据调用失败!';
 			$this->ajaxReturn(array('message'=>'抱歉,数据调用失败!'), '', 0);
 			exit;
 		}

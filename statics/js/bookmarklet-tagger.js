@@ -266,7 +266,7 @@ var Tagger = {
 					
 					
 				}else if ($(xml).find("status").length>0 && $(xml).find("status").text()==0) {
-				  var message = $(xml).find("message").text();
+				  var message = $(xml).find("message").text();pop_login();
 				  if (message == '抱歉,这个网站的图片未能抓取成功!'){
 					Tagger.handleCancel();
 					$('a.close_box').click();
@@ -353,7 +353,7 @@ var Tagger = {
 			var self = this;
 			$.post("/add_photo_tags.xml",param, 
 			  function(xml){
-				if ($(xml).find("status_code").length>0 && $(xml).find("status_code").text()==1) {
+				if ($(xml).find("status_").length>0 && $(xml).find("status").text()==1) {
 					//$('#main form').before('<p class="success-tip">Image added - thanks! We\'ll check it out and then put it on the front page.</p>')
 					$('#main form.add_thing').before('<div id="getcode">'+
 					
@@ -394,8 +394,7 @@ var Tagger = {
 						};
 					self.send_msg(obj,msg);
 
-				}
-				else if ($(xml).find("status_code").length>0 && $(xml).find("status_code").text()==0) {
+				}else if ($(xml).find("status").length>0 && $(xml).find("status").text()==0) {
 				  alert($(xml).find("message").text());
 				}
 				is_registering=false;

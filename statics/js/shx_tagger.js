@@ -925,7 +925,7 @@ if (document.URL.indexOf(".shx.com") == -1){
 }
 else
 {
-   window.alert("生活秀 bookmarklet now installed. You can now add things to your 生活秀 catalog from other sites around the web. Go give it a try!");
+   window.alert("生活秀书签工具已经安装完毕. 现在您可以从其他网站页面上添加喜欢的东西到生活秀. 去试试看！");
 }
 
 
