@@ -367,13 +367,12 @@
 }
 .s-sina{background-position:0 -417px}
 .s-renren{background-position:0 -80px}
-.s-tencent{background-position:0 -280px}
+.s-baidu{background-position:0 -326px}
 .s-qzone{background-position:0 -371px}
 .s-163{background-position:0 -463px}
 .s-douban{background-position:0 -120px}
 .s-qq{background-position:0 0}
 .s-tao{background-position:0 -163px}
-.s-alipay{background-position:0 -241px}
 .header .vline5 {
     color: #CCCCCC;
     font-size: 12px;
@@ -388,7 +387,7 @@
     height: 26px;
     opacity: 0.9;
     width: 35px;
-	  border: medium none;
+	border: medium none;
 }
 .header .search-input-keyword {
     background: none repeat scroll 0 center transparent;
@@ -1911,6 +1910,9 @@ span.tag_title {
 .login p {
 	line-height:25px;
 }
+.login .register_width{
+	width:150px;
+}
 .login .login_list a {
 	float:left;
 	width:32px;
@@ -1919,7 +1921,7 @@ span.tag_title {
 	margin:5px 10px 5px 0px;
 }
 .login .login_list .taobao {
-	background:url(../images/l-tao.png) no-repeat;
+	background:url(../images/connect/taobao_small.png) no-repeat;
 }
 .login .login_list .sina {
 	background:url(../images/connect/Sina_small.png) no-repeat;
@@ -1943,8 +1945,8 @@ span.tag_title {
 .login .login_list .kaixin {
 	background:url(../images/connect/Kaixin_small.png) no-repeat;
 }
-.login .login_list .baidu {
-	background:url(../images/baidu_small.png) no-repeat;
+.login .login_list .douban {
+	background:url(../images/connect/douban_small.png) no-repeat;
 }
 .login th {
 	text-align:right;

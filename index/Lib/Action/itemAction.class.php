@@ -116,8 +116,7 @@ class itemAction extends baseAction {
 		if(!isset($_SESSION['user_id'])) {
 			$this->redirect('uc/login');
 		}
-		$shareUrl = 'javascript:(function(){theindex_username="'.$_SESSION['user_id'].'";var script_id = "theindex_tagger_bookmarklet_helper_js";var s = document.getElementById(script_id);var can_continue = true;if (s) {var t = window;try {if (t.theindex_bookmarklet) {t.theindex_bookmarklet.tagger.clean_listeners();s.parentNode.removeChild(s);} else {can_continue = false;}} catch (e5) {can_continue = false;}};if (can_continue) {_my_script = document.createElement("SCRIPT");_my_script.type = "text/javascript";_my_script.id = script_id;_my_script.src = "'.$this->site_root.'statics/js/shx_tagger.js?x=" + (Math.random());document.getElementsByTagName("head")[0].appendChild(_my_script);}})();';
-		$shareUrl = str_replace('"', '&quot;', $shareUrl);
+		$shareUrl = 'javascript:(function(){shx=&quot;'.$this->site_root.'&quot;;theindex_username=&quot;'.$_SESSION['user_id'].'&quot;;var script_id = &quot;theindex_tagger_bookmarklet_helper_js&quot;;var s = document.getElementById(script_id);var can_continue = true;if (s) {var t = window;try {if (t.theindex_bookmarklet) {t.theindex_bookmarklet.tagger.clean_listeners();s.parentNode.removeChild(s);} else {can_continue = false;}} catch (e5) {can_continue = false;}};if (can_continue) {_my_script = document.createElement(&quot;SCRIPT&quot;);_my_script.type = &quot;text/javascript&quot;;_my_script.id = script_id;_my_script.src = &quot;'.$this->site_root.'statics/js/shx_tagger.js?x=&quot; + (Math.random());document.getElementsByTagName(&quot;head&quot;)[0].appendChild(_my_script);}})();';
 		if(isset($_POST['submitPicture'])) {
 			if ($_FILES['img']['name'] != '') {
 				$upload_list = $this->_upload($_FILES['img']);

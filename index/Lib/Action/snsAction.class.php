@@ -52,19 +52,16 @@ class snsAction extends baseAction {
 				$sns = 'taobao';
 			break;
 			case 4:
-				$sns = 'alipay';
+				$sns = 'renren';
 			break;
 			case 5:
-				$sns = 'tencent';
+				$sns = '163';
 			break;
 			case 6:
 				$sns = 'douban';
-			break;
-			case 7:
-				$sns = 'renren';
-			break;
+			break;	
 			default:
-				$sns = 0;
+				$this->redirect('uc/login', '', 3,'<h2>登陆信息出错,请重新登陆!</h2>');
 			break;
 		}
 		return $sns;

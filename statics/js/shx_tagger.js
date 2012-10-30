@@ -1,11 +1,10 @@
 var qualifiedImages = new Array();
 var title_v = '';
-var domain = 'http://www.huhongfei.com/SHX';
 (function () {
 function shx_tagger_bookmarklet(){
    this.IFrameObj; // our IFrame object
-   this.iframe_url = domain+"/item/tagger";
-   this.css_url = domain+'/statics/css/bookmarklet.css'
+   this.iframe_url = shx+"item/tagger";
+   this.css_url = shx+'statics/css/bookmarklet.css'
    this.iframe_id = 'theindex_bookmarklet_tagger_iframe';
    this.css_id = this.iframe_id+"_css";
    this.img_front_div_id = 'theindex_bookmarklet_img_div_id';
