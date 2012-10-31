@@ -3,7 +3,7 @@ var title_v = '';
 (function () {
 function shx_tagger_bookmarklet(){
    this.IFrameObj; // our IFrame object
-   this.iframe_url = shx+"item/tagger";
+   this.iframe_url = shx+"item/tagger?user_id="+theindex_username;
    this.css_url = shx+'statics/css/bookmarklet.css'
    this.iframe_id = 'theindex_bookmarklet_tagger_iframe';
    this.css_id = this.iframe_id+"_css";

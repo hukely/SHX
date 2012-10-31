@@ -116,7 +116,7 @@ class itemAction extends baseAction {
 		if(!isset($_SESSION['user_id'])) {
 			$this->redirect('uc/login');
 		}
-		$shareUrl = 'javascript:(function(){shx=&quot;'.$this->site_root.'&quot;;theindex_username=&quot;'.$_SESSION['user_id'].'&quot;;var script_id = &quot;theindex_tagger_bookmarklet_helper_js&quot;;var s = document.getElementById(script_id);var can_continue = true;if (s) {var t = window;try {if (t.theindex_bookmarklet) {t.theindex_bookmarklet.tagger.clean_listeners();s.parentNode.removeChild(s);} else {can_continue = false;}} catch (e5) {can_continue = false;}};if (can_continue) {_my_script = document.createElement(&quot;SCRIPT&quot;);_my_script.type = &quot;text/javascript&quot;;_my_script.id = script_id;_my_script.src = &quot;'.$this->site_root.'statics/js/shx_tagger.js?x=&quot; + (Math.random());document.getElementsByTagName(&quot;head&quot;)[0].appendChild(_my_script);}})();';
+		$shareUrl = 'javascript:(function(){shx=&quot;'.$this->site_root.'&quot;;theindex_username=&quot;'.base64_encode($_SESSION['user_id'].'@S#H$X%').'&quot;;var script_id = &quot;theindex_tagger_bookmarklet_helper_js&quot;;var s = document.getElementById(script_id);var can_continue = true;if (s) {var t = window;try {if (t.theindex_bookmarklet) {t.theindex_bookmarklet.tagger.clean_listeners();s.parentNode.removeChild(s);} else {can_continue = false;}} catch (e5) {can_continue = false;}};if (can_continue) {_my_script = document.createElement(&quot;SCRIPT&quot;);_my_script.type = &quot;text/javascript&quot;;_my_script.id = script_id;_my_script.src = &quot;'.$this->site_root.'statics/js/shx_tagger.js?x=&quot; + (Math.random());document.getElementsByTagName(&quot;head&quot;)[0].appendChild(_my_script);}})();';
 		if(isset($_POST['submitPicture'])) {
 			if ($_FILES['img']['name'] != '') {
 				$upload_list = $this->_upload($_FILES['img']);
@@ -215,6 +215,18 @@ class itemAction extends baseAction {
         return $uploadList;
     }
 	public function tagger() {
+		$rand = '@S#H$X%';				//固定值,用于加密用户ID;也可为每个id单独使用一个随机值,但会增大数据库开销
+		$user_mod = D('user');
+		if(isset($_SESSION['user_id'])) {
+			$user = $user_mod->field('name')->where(array('id'=>$_SESSION['user_id']))->find();
+			$user['name'] = empty($user['name'])?'登入失败':$user['name'];
+		}else{
+			$userID = rtrim(base64_decode($_GET['user_id']), $rand);
+			$user = $user_mod->field('name')->where(array('id'=>$userID))->find();
+			$user['name'] = empty($user['name'])?'登入失败':$user['name'];
+		}
+		$this->assign('user_name', $user['name']);
+		$this->assign('csrftoken', $_SESSION['PHPSESSID']);
 		$items_cate_mod = D('items_cate');
 		$item_cate_first_list = $items_cate_mod->field('id,name')->where(array('pid' => 0))->order('ordid DESC')->select();
 		$this->assign('first_cates_list', $item_cate_first_list);
@@ -226,10 +238,11 @@ class itemAction extends baseAction {
 	public function ajaxAddPicture() {
 		C('DEFAULT_AJAX_RETURN', 'XML');
 		$items_mod = D('items');
-		if(!empty($_POST['user_key'])){
+		if(empty($_POST['user_key'])){
 			$this->ajaxReturn(array('message'=>'用户账号有误,重试若无法生效,请重新安装插件!'), '', 0);
 			exit;
 		}
+		$userID = rtrim(base64_decode($_POST['user_key']), '@S#H$X%');
 		if (false === $data = $items_mod->create()) {
 			$this->ajaxReturn(array('message'=>'抱歉,数据调用失败!'), '', 0);
 			exit;
@@ -238,7 +251,7 @@ class itemAction extends baseAction {
 		$data['bimg'] = $_POST['photo_url'];
 		$data['simg'] = $_POST['photo_url'];
 		$data['add_time'] = time();
-		$data['uid'] = $_POST['user_key'];
+		$data['uid'] = $userID;
 		$data['last_time'] = time();
 		if($_POST['category'] != "") {
 			$data['cid'] = $_POST['category'];
@@ -268,6 +281,16 @@ class itemAction extends baseAction {
 		}
 		
 	}
+	public function add_photo_tags() {
+		C('DEFAULT_AJAX_RETURN', 'XML');
+		$data['status'] = array(
+			'status_code'=>1,
+			'photo_id'=>'bNLfaab',
+			'photo_url'=>$_POST['photo_url']
+		);
+		$this->ajaxReturn($data, '',1);
+	}
+	
 	private function catchPictrue() {
 		import("ORG.Net.Http");
 		$getHttp = new Http();

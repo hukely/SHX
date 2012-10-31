@@ -3,17 +3,17 @@
 	<title>
 			生活秀 - 爱生活
 	</title>
-	
-	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-main.css?v=011" />
-	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/tagger-bookmarklet.css?v=007" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-main.css?v=002" />
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/tagger-bookmarklet.css?v=001" />
 	<!--[if IE 8]>
-	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie8.css?v=009" />
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie8.css" />
 	<![endif]-->
 	<!--[if lte IE 7]>
-	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie.css?v=008" />
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie.css" />
 	<![endif]-->
 	<!--[if lte IE 6]>
-	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie6.css?v=005" />
+	<link rel="stylesheet" type="text/css" media="all" href="__ROOT__/statics/css/bookmarklet-ie6.css" />
 	<![endif]-->
 <script type="text/javascript">
 	var shx='{$shx}';
@@ -24,10 +24,10 @@
 	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.ui.mouse.js" language="javascript"></script>
 	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.ui.draggable.js" language="javascript"></script>
 	<script type="text/javascript" src="__APP__/statics/js/jquery/plugins/jquery.countdown.min.js" language="javascript"></script>
-	<script type="text/javascript" src="__APP__/statics/js/bookmarklet-tagger.js?v=0051" language="javascript"></script>
-	<script type="text/javascript" src="__APP__/statics/js/_bookmarklet_helper.js?v=0051" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/bookmarklet-tagger.js?v=001" language="javascript"></script>
+	<script type="text/javascript" src="__APP__/statics/js/_bookmarklet_helper.js?v=001" language="javascript"></script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ajaxSend(function(event, xhr, settings) {
 		function getCookie(name) {
 			var cookieValue = null;
@@ -70,22 +70,34 @@
 		}
 	});
 	function get_child_cates(obj,to_id){
-	var parent_id = $(obj).val();
-	if(to_id == 'sid') {
-		$('#cid').html( '<option value=\"\">--请选择--</option>');
+		var parent_id = $(obj).val();
+		if(to_id == 'sid') {
+			$('#cid').html( '<option value=\"\">--请选择--</option>');
+		}
+		if( parent_id ){
+			$.get('?m=uc&a=get_child_cates&parent_id='+parent_id,function(data){
+					var obj = eval("("+data+")");
+					$('#'+to_id).html( obj.content );
+			});
+		}
 	}
-	if( parent_id ){
-		$.get('?m=uc&a=get_child_cates&parent_id='+parent_id,function(data){
-				var obj = eval("("+data+")");
-				$('#'+to_id).html( obj.content );
-	    });
-    }
-}
-	</script>
+	function block() {
+		$('form.add_thing').hide();
+		$('form.add_tags').show();
+		$('#main .f-header').show();
+	}
+	function accessName() {
+		$.post(shx+"uc/accessName?", {'userID':23213232},
+			function(data) {
+			alert(2343);
+			}
+		);
+	}
+</script>
 
-    </head>
+</head>
     
-    <body class="tagger-js" style="background-color: #eff1f7;">
+<body class="tagger-js" style="background-color: #eff1f7;">
 	<div id="main">
 	    <form class="no_image" style="display:none;">
 		    <div id="f-head">
@@ -122,12 +134,14 @@
 						<option value="{$val.id}">{$val.name}</option>
 						</volist>
 				</select>
+				<a href="javascript:block()">有亮点?</a>
 			</div>
 	
 			<div id="f-foot">
-			    <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='q98Mj2eAi6x8Yt7TAsd29PPYSsa7UN9A' /></div>
+			    <div style='display:none'><input type='hidden' name='csrftoken' value='{$csrftoken}' /></div>
 				<span class="next-action">
-				<a class="f-button add_new_thing" href="#">Fancy it!</a> <a href="#" class="l2 cancel_add_thing">Cancel</a> <!--<a href="#" class="l2" id="f-taglink">Tag photo</a>-->
+				<a href="javascript:accessName()">{$user_name}</a>
+				<a class="f-button add_new_thing" href="#">Show it!</a> <a href="#" class="l2 cancel_add_thing">Cancel</a> <!--<a href="#" class="l2" id="f-taglink">Tag photo</a>-->
 				</span>
 				<span class="status-msg" style="display:none;margin-left:5px;">
 				<strong>Saving...</strong>
@@ -169,7 +183,7 @@
 	    </form>
 	    
 	    <div class="need_login" style="display:none;">
-			<a href="javascript:pop_login()" class='require_login'>Sign in to Fancy</a>
+			<a href="javascript:pop_login()" class='require_login'>登录到生活秀</a>
 			<div id="list" style="display:none">
 			</div>
 	    </div>

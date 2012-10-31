@@ -400,7 +400,7 @@ input.empty {
   color: #ff0000; }
 
 .tag {
-  background: url(/_ui/images/ico-tag.png) top left no-repeat;
+  background: url(../images/ico-tag.png) top left no-repeat;
   width: 20px;
   height: 20px;
   display: block; }
@@ -450,7 +450,7 @@ dd {
 /* 2.5 Image
 -----------------------------------------------------------------------------------------------*/
 .image {
-  background: url(/_ui/images/bg-stripes.png);
+  background: url(../images/bg-stripes.png);
   position: relative;
   margin: 5px 0; }
   .image img {
@@ -469,7 +469,7 @@ p.details a { float: left; clear: both; }
 .btn-like {
 	display: inline;
 	margin-top: 5px;
-  background: url(/_ui/images/ico-heart.png) 0 0 no-repeat;
+  background: url(../images/ico-heart.png) 0 0 no-repeat;
   height: 12px;
   line-height: 12px;
   overflow: hidden;
@@ -534,7 +534,7 @@ p.details a { float: left; clear: both; }
     height: 20px;
     z-index: 9; }
     .tag-photo .point .dot { 
-      background: url(/_ui/images/ico-tag.png) repeat 0 0;
+      background: url(../images/ico-tag.png) repeat 0 0;
       position: absolute;
       width: 20px;
       height: 20px;
@@ -544,7 +544,7 @@ p.details a { float: left; clear: both; }
       top: -110px;
       left: -12px;
       position: relative;
-      background: url(/_ui/images/bg-tip.png) repeat 0 0;
+      background: url(../images/bg-tip.png) repeat 0 0;
       width: 322px;
       height: 92px;
       padding: 6px;
@@ -580,7 +580,7 @@ p.details a { float: left; clear: both; }
 .tipsy span.b,
 .tag-photo .tag-item .tip span.b {
   position: absolute;
-  background: url(/_ui/images/bg-tip-b.png) no-repeat 0 0;
+  background: url(../images/bg-tip-b.png) no-repeat 0 0;
   width: 9px;
   height: 5px;
   display: block;
@@ -595,7 +595,7 @@ p.details a { float: left; clear: both; }
   right: 20px;
   top: auto;
   position: absolute !important;
-  background: url(/_ui/images/bg-tip.png) repeat 0 0;
+  background: url(../images/bg-tip.png) repeat 0 0;
   padding: 6px;
   text-align: left; }
   .tipsy span.b {
@@ -661,7 +661,7 @@ body.tagger-js a.button {
   .tag-photo .tag-item .tip {
     visibility: hidden;
     position: relative;
-    background: url(/_ui/images/bg-tip.png) repeat 0 0;
+    background: url(../images/bg-tip.png) repeat 0 0;
     float: left;
     padding: 6px;
      }
@@ -742,7 +742,7 @@ p.tip {
 
 
 .btn-unlike {
-  background: url(/_ui/images/ico-heart.png) 0 0 no-repeat;
+  background: url(../images/ico-heart.png) 0 0 no-repeat;
   background-position: 0 -12px;
   height: 12px;
   line-height: 12px;
@@ -757,7 +757,7 @@ p.tip {
 .tag-photo .tag-item .tip {z-index:10;}
 
 
-.stripes {background: url(/_ui/images/bg-stripes.png);}
+.stripes {background: url(../images/bg-stripes.png);}
 
 label.password {display:inline-block;width:100px;}
 
