@@ -114,6 +114,6 @@
         }
         $_SESSION['login_type'] = 'qq';
 
-       header('Location:' . urldecode($_COOKIE['redirect']));
-		
+       //header('Location:' . urldecode($_COOKIE['redirect']));
+		echo("<script> top.location.href='" . urldecode($_COOKIE['redirect']) . "'</script>");
     //}

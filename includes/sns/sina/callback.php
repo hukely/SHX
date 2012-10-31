@@ -64,4 +64,5 @@
             exit;
         }
         $_SESSION['login_type'] = 'sina';
-     header('Location:' . urldecode($_COOKIE['redirect']));
+     //header('Location:' . urldecode($_COOKIE['redirect']));
+	 echo("<script> top.location.href='" . urldecode($_COOKIE['redirect']) . "'</script>");
