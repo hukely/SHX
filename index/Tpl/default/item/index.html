@@ -2,8 +2,11 @@
 <script type="text/javascript">
 var items_id="{$items_id}";
 </script>
+<load href="__ROOT__/statics/css/imgArea/imgareaselect-default.css" />
 <load href="__ROOT__/statics/js/jquery/plugins/jquery.masonry.min.js" />
 <load href="__ROOT__/statics/js/jquery/plugins/jquery.lazyload.js" />
+<load href="__ROOT__/statics/js/jquery/plugins/jquery.imgareaselect.min.js" />
+
 <div class="content">
 	<div class="mt15">
 	<script language="javascript" src="{:u('advert/index', array('id'=>4))}"></script>
@@ -25,7 +28,7 @@ var items_id="{$items_id}";
             </dl>
             
         	<div class="item_pic">
-				<a target="_blank" href="{:u('item/tao',array('id'=>$item['id']))}"><img url="{:base64_encode($item['bimg'])}" class="encode_url"></a>
+				<a target="_blank" href="{:u('item/tao',array('id'=>$item['id']))}"><img id="photo" url="{:base64_encode($item['bimg'])}" class="encode_url"></a>
 				<volist name="pics" id="val">
 				<br><a><img src="{$val['url']}"></a>
 				</volist>
@@ -151,6 +154,17 @@ var items_id="{$items_id}";
         <div class="clearfix"></div>
         <div class="mt15" style="width:226px; overflow:hidden;">
         <script language="javascript" src="{:u('advert/index', array('id'=>5))}"></script>
+        <script type="text/javascript">
+				$(document).ready(function () {
+					$('img#photo').imgAreaSelect({
+						handles: true,
+						onSelectEnd: block
+					});
+				});
+				function block() {
+					
+				}
+		</script>
         </div>
     </div>
 </div>
