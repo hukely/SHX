@@ -73,44 +73,6 @@ if($_REQUEST['state'] == $_SESSION['state']) {
         }
         $_SESSION['login_type'] = 'renren';
 		
-		
-		
-		
-		
-		
-		$userId = $res[0]["uid"];
-		$username = $res[0]["name"];
-		$birthday = $res[0]["birthday"];
-		$tinyurl = $res[0]["tinyurl"];
-		$sex = $res[0]["sex"];
-		$headurl = $res[0]["headurl"];
-		$mainurl = $res[0]["mainurl"];
-
-				if($userId)//如果userId已经存在
-				{
-					//更新数据库的access_token、expires_in、refresh_token、获取token的时间
-					//直接登录到网站
-				} else {
-					//注册网站或者绑定已有账号
-					//进行同步设置？
-					//登录到网站
-				}
-
-		/* //使用refreshtoken刷新accesstoken
-		//刷新代码：
-		//用refreshtoken刷新accesstoken（在同步新鲜事的时候取出对应网站用户的人人accesstoken，如果用当前时间的秒数-expires_in>获取token的时间的秒数,则accesstoken过期，用refreshtoken刷新accesstoken）
-
-		$post_params = array(
-				'client_id'=>WB_AKEY,
-				'client_secret'=>WB_SKEY,
-				'refresh_token'=>$refresh_token,
-				'grant_type'=>'refresh_token'
-				);
-		$access_info=$oauthApi->rr_post_curl($token_url,$post_params);//使用code换取token
-		$access_token=$access_info["access_token"];
-		$expires_in=$access_info["expires_in"];
-		$refresh_token=$access_info["refresh_token"]; */
-		
 		echo("<script> top.location.href='" . urldecode($_COOKIE['redirect']) . "'</script>");
 		
 	}else{
